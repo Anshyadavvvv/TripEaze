@@ -18,7 +18,8 @@ export default function Login() {
     // TODO: wire this up to your auth/login endpoint
 
     try {
-      const response = await axios.post("http://localhost:5001/utkarshadmin", {
+      const API_URL = import.meta.env.VITE_API_URL;
+      const response = await axios.post(`${API_URL}/utkarshadmin`, {
         email: formData.email,
         password: formData.password,
       });

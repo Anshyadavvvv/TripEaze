@@ -27,15 +27,13 @@ export default function AdminPanel() {
   useEffect(() => {
     const fetchEnquiries = async () => {
       try {
+        const API_URL = import.meta.env.VITE_API_URL;
         const token = localStorage.getItem("adminToken");
-        const response = await axios.get(
-          "http://localhost:5001/utkarshadmin/enquiries",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
+        const response = await axios.get(`${API_URL}/utkarshadmin/enquiries`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
           },
-        );
+        });
 
         const data = response.data.enquiries.map((e) => ({
           id: e._id,
@@ -102,8 +100,8 @@ export default function AdminPanel() {
     if (selected?.id === id) setSelected(null);
 
     const token = localStorage.getItem("adminToken");
-
-    await axios.delete(`http://localhost:5001/utkarshadmin/enquiries/${id}`, {
+    const API_URL = import.meta.env.VITE_API_URL;
+    await axios.delete(`${API_URL}/utkarshadmin/enquiries/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
