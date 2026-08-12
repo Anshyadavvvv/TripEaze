@@ -1,5 +1,5 @@
 import Navbar from "./Navbar";
-import heroImage from "../assets/hero-bg.png";
+import heroImage from "../assets/hero-bg1.png";
 
 export default function Hero() {
   return (
