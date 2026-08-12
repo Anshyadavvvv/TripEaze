@@ -81,19 +81,17 @@ export default function EnquiryForm() {
       // const controller = new AbortController();
     } else {
       setErrors({});
-      const response = await axios.post(
-        "http://localhost:5001/packages/:packageName/enquiry",
-        {
-          name: formData.name,
-          email: formData.email,
-          password: formData.password,
-          packages: formData.package,
-          address: formData.address,
-          numoftraveller: formData.travellers,
-          phonenumber: formData.phone,
-          query: formData.query,
-        },
-      );
+      const API_URL = import.meta.env.VITE_API_URL;
+      const response = await axios.post(`${API_URL}/:packageName/enquiry`, {
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+        packages: formData.package,
+        address: formData.address,
+        numoftraveller: formData.travellers,
+        phonenumber: formData.phone,
+        query: formData.query,
+      });
       setIsSubmitted(true);
       console.log("Form Submitted Successfully:", formData);
       console.log(response);
@@ -102,7 +100,13 @@ export default function EnquiryForm() {
 
   // --- Presentation-only additions below (no effect on the logic above) ---
 
-  const confettiColors = ["#F5A83C", "#2DD4BF", "#EEF2FF", "#FDE68A", "#7DD3C0"];
+  const confettiColors = [
+    "#F5A83C",
+    "#2DD4BF",
+    "#EEF2FF",
+    "#FDE68A",
+    "#7DD3C0",
+  ];
   const confettiPieces = Array.from({ length: 26 });
 
   const fieldIconClass =
@@ -148,15 +152,29 @@ export default function EnquiryForm() {
       <div className="te-motion pointer-events-none absolute inset-0">
         <div
           className="absolute -top-24 -left-24 h-80 w-80 rounded-full opacity-30 blur-3xl"
-          style={{ background: "#F5A83C", animation: "te-drift 11s ease-in-out infinite" }}
+          style={{
+            background: "#F5A83C",
+            animation: "te-drift 11s ease-in-out infinite",
+          }}
         />
         <div
           className="absolute -bottom-32 -right-16 h-96 w-96 rounded-full opacity-25 blur-3xl"
-          style={{ background: "#2DD4BF", animation: "te-drift 14s ease-in-out infinite reverse" }}
+          style={{
+            background: "#2DD4BF",
+            animation: "te-drift 14s ease-in-out infinite reverse",
+          }}
         />
-        <svg className="absolute inset-0 h-full w-full opacity-[0.07]" xmlns="http://www.w3.org/2000/svg">
+        <svg
+          className="absolute inset-0 h-full w-full opacity-[0.07]"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <defs>
-            <pattern id="te-grid" width="42" height="42" patternUnits="userSpaceOnUse">
+            <pattern
+              id="te-grid"
+              width="42"
+              height="42"
+              patternUnits="userSpaceOnUse"
+            >
               <circle cx="1" cy="1" r="1" fill="#C9D1E8" />
             </pattern>
           </defs>
@@ -194,8 +212,12 @@ export default function EnquiryForm() {
               />
               <circle cx="10" cy="30" r="3" fill="#2DD4BF" />
               <circle cx="390" cy="12" r="3" fill="#F5A83C" />
-              <g style={{ animation: "te-plane-bob 2.4s ease-in-out infinite" }}>
-                <text x="185" y="8" fontSize="14" fill="#F5A83C">✈</text>
+              <g
+                style={{ animation: "te-plane-bob 2.4s ease-in-out infinite" }}
+              >
+                <text x="185" y="8" fontSize="14" fill="#F5A83C">
+                  ✈
+                </text>
               </g>
             </svg>
 
@@ -206,8 +228,8 @@ export default function EnquiryForm() {
               Package Enquiry
             </h2>
             <p className="te-body relative text-slate-300 text-sm mt-2 max-w-md mx-auto">
-              Fill in your details below and our team will get back to you with a
-              custom plan.
+              Fill in your details below and our team will get back to you with
+              a custom plan.
             </p>
           </div>
 
@@ -236,12 +258,18 @@ export default function EnquiryForm() {
                 className="te-motion relative w-16 h-16 bg-emerald-400/15 text-emerald-400 rounded-full flex items-center justify-center mx-auto text-2xl font-bold mb-4 border border-emerald-400/30"
                 style={{ animation: "te-pop-in 420ms ease-out" }}
               >
-                <span style={{ animation: "te-takeoff 1.8s ease-in 500ms infinite" }}>
+                <span
+                  style={{
+                    animation: "te-takeoff 1.8s ease-in 500ms infinite",
+                  }}
+                >
                   ✈
                 </span>
                 <span className="absolute">✓</span>
               </div>
-              <h3 className="te-display text-2xl font-bold text-white">Thank You!</h3>
+              <h3 className="te-display text-2xl font-bold text-white">
+                Thank You!
+              </h3>
               <p className="text-slate-300 mt-2">
                 Your enquiry has been received. We'll contact you soon.
               </p>
@@ -287,8 +315,15 @@ export default function EnquiryForm() {
                     Full Name
                   </label>
                   <div className="relative">
-                    <svg className={fieldIconClass} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-                      <path d="M20 21a8 8 0 1 0-16 0" /><circle cx="12" cy="7" r="4" />
+                    <svg
+                      className={fieldIconClass}
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                    >
+                      <path d="M20 21a8 8 0 1 0-16 0" />
+                      <circle cx="12" cy="7" r="4" />
                     </svg>
                     <input
                       required
@@ -317,8 +352,15 @@ export default function EnquiryForm() {
                     Email Address
                   </label>
                   <div className="relative">
-                    <svg className={fieldIconClass} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-                      <rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" />
+                    <svg
+                      className={fieldIconClass}
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                    >
+                      <rect x="3" y="5" width="18" height="14" rx="2" />
+                      <path d="m3 7 9 6 9-6" />
                     </svg>
                     <input
                       required
@@ -347,8 +389,15 @@ export default function EnquiryForm() {
                     Password
                   </label>
                   <div className="relative">
-                    <svg className={fieldIconClass} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-                      <rect x="4" y="11" width="16" height="9" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" />
+                    <svg
+                      className={fieldIconClass}
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                    >
+                      <rect x="4" y="11" width="16" height="9" rx="2" />
+                      <path d="M8 11V7a4 4 0 0 1 8 0v4" />
                     </svg>
                     <input
                       required
@@ -377,8 +426,15 @@ export default function EnquiryForm() {
                     Package
                   </label>
                   <div className="relative">
-                    <svg className={fieldIconClass} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-                      <rect x="3" y="7" width="18" height="13" rx="2" /><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                    <svg
+                      className={fieldIconClass}
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                    >
+                      <rect x="3" y="7" width="18" height="13" rx="2" />
+                      <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
                     </svg>
                     <input
                       required
@@ -398,7 +454,13 @@ export default function EnquiryForm() {
                     Phone Number
                   </label>
                   <div className="relative">
-                    <svg className={fieldIconClass} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+                    <svg
+                      className={fieldIconClass}
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                    >
                       <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.4 2.1L8 9.9a16 16 0 0 0 6 6l1.4-1.4a2 2 0 0 1 2.1-.4c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.8 2.2Z" />
                     </svg>
                     <input
@@ -431,8 +493,15 @@ export default function EnquiryForm() {
                     Address
                   </label>
                   <div className="relative">
-                    <svg className={fieldIconClass} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-                      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" /><circle cx="12" cy="10" r="3" />
+                    <svg
+                      className={fieldIconClass}
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                    >
+                      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                      <circle cx="12" cy="10" r="3" />
                     </svg>
                     <input
                       required
@@ -461,8 +530,16 @@ export default function EnquiryForm() {
                     Travellers
                   </label>
                   <div className="relative">
-                    <svg className={fieldIconClass} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-                      <path d="M17 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+                    <svg
+                      className={fieldIconClass}
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                    >
+                      <path d="M17 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                      <circle cx="9" cy="7" r="4" />
+                      <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
                     </svg>
                     <input
                       required
