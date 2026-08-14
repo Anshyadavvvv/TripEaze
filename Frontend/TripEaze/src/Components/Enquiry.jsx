@@ -73,30 +73,36 @@ export default function EnquiryForm() {
 
   // Handle Form Submission
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const validationErrors = validate();
+  e.preventDefault();
+  const validationErrors = validate();
 
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-      // const controller = new AbortController();
-    } else {
-      setErrors({});
-      const API_URL = import.meta.env.VITE_API_URL;
-      const response = await axios.post(`${API_URL}/:packageName/enquiry`, {
-        name: formData.name,
-        email: formData.email,
-        password: formData.password,
-        packages: formData.package,
-        address: formData.address,
-        numoftraveller: formData.travellers,
-        phonenumber: formData.phone,
-        query: formData.query,
-      });
+  if (Object.keys(validationErrors).length > 0) {
+    setErrors(validationErrors);
+  } else {
+    setErrors({});
+    const API_URL = import.meta.env.VITE_API_URL;
+    try {
+      const response = await axios.post(
+        `${API_URL}/packages/${formData.package}/enquiry`,
+        {
+          name: formData.name,
+          email: formData.email,
+          password: formData.password,
+          packages: formData.package,
+          address: formData.address,
+          numoftraveller: formData.travellers,
+          phonenumber: formData.phone,
+          query: formData.query,
+        }
+      );
       setIsSubmitted(true);
-      console.log("Form Submitted Successfully:", formData);
-      console.log(response);
+      console.log("Form Submitted Successfully:", response.data);
+    } catch (err) {
+      console.error("Enquiry submit failed:", err.response?.data || err.message);
+      alert("Something went wrong while submitting. Please try again.");
     }
-  };
+  }
+};
 
   // --- Presentation-only additions below (no effect on the logic above) ---
 
