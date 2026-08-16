@@ -91,16 +91,14 @@ const reviewsData = [
   },
 ];
 
-const rowOf = (arr) => [...arr, ...arr]; // duplicate for a seamless loop
-
-const row1 = rowOf(reviewsData);
-const row2 = rowOf([...reviewsData].reverse());
-const row3 = rowOf([...reviewsData.slice(3), ...reviewsData.slice(0, 3)]);
-
 const accents = [
   { bg: '#F5A83C', text: '#B9720C' }, // gold
   { bg: '#2DD4BF', text: '#0F8F86' }, // teal
 ];
+
+// Cycles each card through cream / navy-dark / accent-gradient backgrounds,
+// the way the reference stack mixes light, dark and colour cards.
+const themeOf = (i) => ['light', 'dark', 'accent'][i % 3];
 
 /** Fires once when the element scrolls into view; used for the fade-up reveal. */
 function useReveal() {
@@ -124,148 +122,138 @@ function useReveal() {
   return [ref, visible];
 }
 
-const Stars = ({ rating }) => (
-  <div className="te-stars flex gap-0.5">
-    {Array.from({ length: 5 }).map((_, i) => (
-      <svg
-        key={i}
-        width="14"
-        height="14"
-        viewBox="0 0 24 24"
-        fill={i < rating ? '#F5A83C' : 'none'}
-        stroke="#F5A83C"
-        strokeWidth="1.5"
-        style={{ animationDelay: `${i * 140}ms` }}
-      >
-        <path d="M12 3.5l2.47 5.18 5.53.63-4.1 3.86 1.07 5.58L12 15.9l-4.97 2.85 1.07-5.58-4.1-3.86 5.53-.63L12 3.5Z" />
+function Stars({ rating, theme }) {
+  const dim = theme === 'dark' ? 'text-white/25' : 'text-[#0B1330]/15';
+  const fill = theme === 'accent' ? '#0B1330' : '#F5A83C';
+  return (
+    <div className="flex gap-0.5">
+      {Array.from({ length: 5 }).map((_, i) => (
+        <svg
+          key={i}
+          width="13"
+          height="13"
+          viewBox="0 0 24 24"
+          fill={i < rating ? fill : 'none'}
+          stroke={i < rating ? fill : 'currentColor'}
+          strokeWidth="1.6"
+          className={i < rating ? '' : dim}
+        >
+          <path d="M12 3.5l2.47 5.18 5.53.63-4.1 3.86 1.07 5.58L12 15.9l-4.97 2.85 1.07-5.58-4.1-3.86 5.53-.63L12 3.5Z" />
+        </svg>
+      ))}
+    </div>
+  );
+}
+
+function VerifiedBadge({ theme }) {
+  const styles =
+    theme === 'dark'
+      ? 'border-white/20 bg-white/10 text-white/80'
+      : theme === 'accent'
+      ? 'border-[#0B1330]/25 bg-[#0B1330]/10 text-[#0B1330]'
+      : 'border-[#0F8F86]/30 bg-[#2DD4BF]/10 text-[#0F8F86]';
+  return (
+    <span className={`inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[10px] font-semibold ${styles}`}>
+      <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+        <path d="M20 6 9 17l-5-5" />
       </svg>
-    ))}
-  </div>
-);
+      Verified
+    </span>
+  );
+}
 
-const VerifiedBadge = () => (
-  <span className="te-verified-pulse inline-flex items-center gap-1 rounded-full border border-[#0F8F86]/30 bg-[#2DD4BF]/10 px-2 py-0.5 text-[10px] font-semibold text-[#0F8F86]">
-    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
-      <path d="M20 6 9 17l-5-5" />
-    </svg>
-    Verified
-  </span>
-);
+const themeClasses = {
+  light: 'bg-[#FAF6EF] text-[#0B1330]',
+  dark: 'bg-[#0B1330] text-white',
+  accent: 'text-[#0B1330]',
+};
 
-function TestimonialCard({ review, accent }) {
-  const cardRef = useRef(null);
-
-  const handleMouseMove = (e) => {
-    const el = cardRef.current;
-    if (!el) return;
-    const rect = el.getBoundingClientRect();
-    el.style.setProperty('--mx', `${e.clientX - rect.left}px`);
-    el.style.setProperty('--my', `${e.clientY - rect.top}px`);
-  };
+function TestimonialCard({ review, index, style, accent }) {
+  const theme = themeOf(index);
+  const isAccent = theme === 'accent';
 
   return (
     <div
-      ref={cardRef}
-      onMouseMove={handleMouseMove}
-      className="te-card group relative mx-3.5 w-[280px] flex-none cursor-pointer rounded-[24px] p-[1px] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2.5 hover:scale-[1.03] sm:w-[320px] lg:w-[350px]"
+      tabIndex={0}
+      className={`te-card absolute w-[220px] cursor-pointer rounded-[22px] p-5 shadow-[0_20px_45px_-15px_rgba(11,19,48,0.35)] outline-none sm:w-[248px] sm:p-6 ${themeClasses[theme]}`}
+      style={{
+        ...style,
+        background: isAccent
+          ? `linear-gradient(150deg, ${accent.bg}, ${accent.bg}CC)`
+          : undefined,
+      }}
     >
-      {/* gradient border */}
-      <div
-        className="absolute inset-0 rounded-[24px] opacity-50 transition-opacity duration-500 group-hover:opacity-100"
-        style={{
-          background: `linear-gradient(135deg, ${accent.bg}80, rgba(11,19,48,0.06) 40%, ${accent.bg}40)`,
-        }}
-      />
+      <div className="mb-3 flex items-center gap-3">
+        <img
+          src={review.avatar}
+          alt={review.name}
+          className={`h-10 w-10 flex-shrink-0 rounded-full border-2 object-cover ${
+            theme === 'dark' ? 'border-white/20' : theme === 'accent' ? 'border-[#0B1330]/25' : 'border-[#0F8F86]/30'
+          }`}
+        />
+        <div className="min-w-0">
+          <h4 className="truncate text-[13.5px] font-bold leading-tight">{review.name}</h4>
+          <p
+            className="truncate text-[11px]"
+            style={{ opacity: theme === 'light' ? 0.55 : 0.6 }}
+          >
+            {review.location}
+          </p>
+        </div>
+      </div>
 
-      <div className="relative overflow-hidden rounded-[23px] border border-[#0B1330]/[0.07] bg-white/75 p-6 backdrop-blur-xl transition-shadow duration-500 group-hover:border-[#0B1330]/15"
-        style={{ boxShadow: '0 20px 50px rgba(11,19,48,0.10)' }}
+      <div className="mb-2.5 flex items-center justify-between">
+        <Stars rating={review.rating} theme={theme} />
+        {review.verified && <VerifiedBadge theme={theme} />}
+      </div>
+
+      <p
+        className="te-quote text-[13px] leading-relaxed"
+        style={{ opacity: theme === 'light' ? 0.75 : 0.88 }}
       >
-        {/* cursor spotlight */}
-        <div
-          className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-          style={{
-            background: `radial-gradient(220px circle at var(--mx, 50%) var(--my, 0%), ${accent.bg}26, transparent 65%)`,
-          }}
-        />
-        {/* hover glow beneath */}
-        <div
-          className="pointer-events-none absolute -inset-6 -z-10 rounded-[30px] opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100"
-          style={{ background: `${accent.bg}30` }}
-        />
+        &ldquo;{review.comment}&rdquo;
+      </p>
 
-        {/* floating quote mark */}
-        <span
-          className="te-float absolute right-5 top-4 select-none font-serif text-3xl leading-none opacity-25"
-          style={{ color: accent.bg }}
-          aria-hidden
-        >
-          &rdquo;
+      <div
+        className={`mt-4 flex items-center justify-between border-t pt-3 text-[10.5px] font-semibold ${
+          theme === 'dark' ? 'border-white/15' : theme === 'accent' ? 'border-[#0B1330]/15' : 'border-[#0B1330]/10'
+        }`}
+      >
+        <span className="inline-flex items-center gap-1" style={{ color: theme === 'light' ? accent.text : 'inherit' }}>
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+            <circle cx="12" cy="10" r="3" />
+          </svg>
+          {review.destination}
         </span>
-
-        <div className="relative mb-4 flex items-center gap-3">
-          <img
-            src={review.avatar}
-            alt={review.name}
-            className="h-12 w-12 rounded-full border-2 object-cover transition-transform duration-500 group-hover:rotate-2 group-hover:scale-105"
-            style={{ borderColor: `${accent.bg}80` }}
-          />
-          <div className="min-w-0">
-            <h4 className="truncate text-[15px] font-bold leading-tight text-[#0B1330]">
-              {review.name}
-            </h4>
-            <span className="text-[12px] font-medium text-[#6B7488]">
-              {review.location}
-            </span>
-          </div>
-        </div>
-
-        <div className="relative mb-3 flex items-center justify-between">
-          <Stars rating={review.rating} />
-          {review.verified && <VerifiedBadge />}
-        </div>
-
-        <p className="relative mb-5 text-[14px] font-normal text-[#3F4B63]" style={{ lineHeight: 1.8 }}>
-          &ldquo;{review.comment}&rdquo;
-        </p>
-
-        <div className="relative flex items-center justify-between border-t border-[#0B1330]/[0.08] pt-3 text-[11.5px]">
-          <span className="inline-flex items-center gap-1 font-semibold" style={{ color: accent.text }}>
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" /><circle cx="12" cy="10" r="3" />
-            </svg>
-            {review.destination}
-          </span>
-          <span className="text-[#8A93A8]">{review.date}</span>
-        </div>
+        <span style={{ opacity: 0.6 }}>{review.date}</span>
       </div>
     </div>
   );
 }
 
-function MarqueeRow({ items, direction, duration, delayMs, visible, className = '' }) {
-  return (
-    <div
-      className={`te-row w-full overflow-hidden py-4 ${visible ? 'is-visible' : ''} ${className}`}
-      style={{ transitionDelay: `${delayMs}ms` }}
-    >
-      <div
-        className={`te-track flex w-max ${direction === 'right' ? 'te-marquee-right' : 'te-marquee-left'}`}
-        style={{ animationDuration: `${duration}s` }}
-      >
-        {items.map((review, index) => (
-          <TestimonialCard
-            key={`${review.id}-${direction}-${index}`}
-            review={review}
-            accent={accents[index % accents.length]}
-          />
-        ))}
-      </div>
-    </div>
-  );
+/** Lays cards out along a shallow arc, like cards fanned in a hand — center
+ * card sits lowest/flattest, outer cards fan up and rotate outward. */
+function layoutFor(i, n) {
+  const center = (n - 1) / 2;
+  const offset = i - center;
+  const norm = center === 0 ? 0 : offset / center; // -1 .. 1
+
+  const angleStep = 6; // deg per card from center
+  const hStep = 7.6; // % horizontal spacing per card from center
+  const arcAmplitude = 12; // % — how much outer cards rise
+
+  const rotate = offset * angleStep;
+  const left = 50 + offset * hStep;
+  const top = 42 - arcAmplitude * norm * norm;
+  const z = Math.round((n - Math.abs(offset)) * 10);
+
+  return { rotate, left, top, z };
 }
 
 export default function Review() {
   const [headingRef, headingVisible] = useReveal();
+  const n = reviewsData.length;
 
   return (
     <section className="te-motion relative overflow-hidden bg-[#FAF6EF] py-24">
@@ -274,122 +262,82 @@ export default function Review() {
         .te-display { font-family: 'Sora', ui-sans-serif, system-ui, sans-serif; }
         .te-body { font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; }
 
-        @keyframes te-marquee-l { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-        @keyframes te-marquee-r { from { transform: translateX(-50%); } to { transform: translateX(0); } }
-        .te-marquee-left  { animation-name: te-marquee-l; animation-timing-function: linear; animation-iteration-count: infinite; }
-        .te-marquee-right { animation-name: te-marquee-r; animation-timing-function: linear; animation-iteration-count: infinite; }
-        .te-row:has(.te-card:hover) .te-track { animation-play-state: paused; }
-
-        @keyframes te-blob {
-          0%, 100% { transform: translate(0, 0) scale(1); }
-          50% { transform: translate(30px, -24px) scale(1.08); }
+        .te-quote {
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
         }
-        @keyframes te-drift {
-          0% { transform: translateY(0) translateX(0); opacity: .2; }
-          50% { opacity: .45; }
-          100% { transform: translateY(-140px) translateX(12px); opacity: .08; }
+        .te-card {
+          transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+            box-shadow 420ms cubic-bezier(0.22, 1, 0.36, 1);
         }
-        @keyframes te-shimmer {
-          0%, 100% { filter: drop-shadow(0 0 0 transparent); }
-          50% { filter: drop-shadow(0 0 4px rgba(245,168,60,0.7)); }
+        .te-card:hover,
+        .te-card:focus-visible {
+          transform: translate(-50%, -50%) rotate(0deg) translateY(-20px) scale(1.08) !important;
+          z-index: 999 !important;
+          box-shadow: 0 45px 90px -20px rgba(11,19,48,0.45);
         }
-        .te-stars svg { animation: te-shimmer 3.2s ease-in-out infinite; }
-        @keyframes te-pulse {
-          0%, 100% { transform: scale(1); }
-          50% { transform: scale(1.08); }
+        .te-card:hover .te-quote,
+        .te-card:focus-visible .te-quote {
+          -webkit-line-clamp: unset;
         }
-        .te-verified-pulse { animation: te-pulse 3.6s ease-in-out infinite; }
-        @keyframes te-float-quote {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-4px); }
-        }
-        .te-float { animation: te-float-quote 4.5s ease-in-out infinite; }
 
         .te-fade-up { opacity: 0; transform: translateY(28px); transition: opacity 700ms ease, transform 700ms ease; }
         .te-fade-up.is-visible { opacity: 1; transform: translateY(0); }
-        .te-row { opacity: 0; transform: translateY(28px); transition: opacity 700ms ease, transform 700ms ease; }
-        .te-row.is-visible { opacity: 1; transform: translateY(0); }
+        .te-stack { opacity: 0; transform: translateY(28px); transition: opacity 700ms ease, transform 700ms ease; transition-delay: 150ms; }
+        .te-stack.is-visible { opacity: 1; transform: translateY(0); }
 
         @media (prefers-reduced-motion: reduce) {
-          .te-motion, .te-motion * { animation: none !important; transition: opacity 300ms ease !important; }
-          .te-track { transform: none !important; }
+          .te-motion, .te-motion * { animation: none !important; }
+          .te-card { transition: box-shadow 200ms ease; }
         }
       `}</style>
 
-      {/* ---- Background layers ---- */}
-      <div className="pointer-events-none absolute inset-0">
-        {/* blurred gradient blobs */}
-        <div
-          className="absolute -top-32 left-[8%] h-96 w-96 rounded-full opacity-30 blur-[90px]"
-          style={{ background: '#F5A83C', animation: 'te-blob 16s ease-in-out infinite' }}
-        />
-        <div
-          className="absolute bottom-[-10%] right-[6%] h-[28rem] w-[28rem] rounded-full opacity-25 blur-[100px]"
-          style={{ background: '#2DD4BF', animation: 'te-blob 20s ease-in-out infinite reverse' }}
-        />
-        <div
-          className="absolute top-1/3 right-1/4 h-64 w-64 rounded-full opacity-[0.12] blur-[80px]"
-          style={{ background: '#F5A83C', animation: 'te-blob 13s ease-in-out infinite' }}
-        />
-
-        {/* subtle mountain silhouette */}
-        <svg
-          className="absolute bottom-0 left-0 w-full opacity-[0.05]"
-          viewBox="0 0 1440 260"
-          preserveAspectRatio="none"
-          fill="#0B1330"
-        >
-          <path d="M0 220 L160 120 L280 180 L420 60 L560 170 L700 100 L860 200 L1000 90 L1160 190 L1300 130 L1440 210 L1440 260 L0 260 Z" />
-        </svg>
-
-        {/* drifting particles */}
-        {Array.from({ length: 18 }).map((_, i) => (
-          <span
-            key={i}
-            className="absolute rounded-full"
-            style={{
-              left: `${(i * 53) % 100}%`,
-              bottom: `${(i * 29) % 90}%`,
-              width: i % 3 === 0 ? 3 : 2,
-              height: i % 3 === 0 ? 3 : 2,
-              background: i % 2 === 0 ? '#F5A83C' : '#2DD4BF',
-              animation: `te-drift ${9 + (i % 6)}s ease-in-out ${(i % 5) * 0.6}s infinite`,
-            }}
-          />
-        ))}
-
-        {/* faint noise texture */}
-        <div
-          className="absolute inset-0 opacity-[0.035] mix-blend-multiply"
-          style={{
-            backgroundImage:
-              "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
-          }}
-        />
-      </div>
+      {/* quiet ambient glow — one place to spend the boldness, not scattered */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute left-1/2 top-10 h-[420px] w-[820px] -translate-x-1/2 rounded-full opacity-[0.16] blur-[110px]"
+        style={{ background: '#F5A83C' }}
+      />
 
       {/* ---- Header ---- */}
       <div
         ref={headingRef}
-        className={`te-body te-fade-up relative mb-16 px-4 text-center ${headingVisible ? 'is-visible' : ''}`}
+        className={`te-body te-fade-up relative mb-6 px-4 text-center ${headingVisible ? 'is-visible' : ''}`}
       >
         <span className="te-display text-xs font-semibold uppercase tracking-[0.25em] text-[#B9720C]">
           Testimonials
         </span>
-        <h2 className="te-display mt-3 bg-gradient-to-br from-[#0B1330] via-[#0B1330] to-[#4B5675] bg-clip-text text-[32px] font-bold tracking-tight text-transparent sm:text-[48px]">
+        <h2 className="te-display mt-3 text-[32px] font-bold tracking-tight text-[#0B1330] sm:text-[48px]">
           Trusted by travellers everywhere
         </h2>
         <p className="te-body mx-auto mt-4 max-w-xl text-[15px] text-[#6B7488]">
-          Real trips, real people. Here's what it's like to travel with TripEaze,
-          straight from the people who've done it.
+          Real trips, real people. Hover a card to read the full story behind the rating.
         </p>
       </div>
 
-      {/* ---- Marquee rows ---- */}
-      <div className="relative [mask-image:linear-gradient(to_right,transparent_0,black_6%,black_94%,transparent_100%)]">
-        <MarqueeRow items={row1} direction="left" duration={52} delayMs={150} visible={headingVisible} />
-        <MarqueeRow items={row2} direction="right" duration={60} delayMs={280} visible={headingVisible} className="hidden md:block" />
-        <MarqueeRow items={row3} direction="left" duration={68} delayMs={410} visible={headingVisible} className="hidden lg:block" />
+      {/* ---- Fanned card stack ---- */}
+      <div
+        className={`te-stack relative mx-auto mt-14 h-[420px] w-full max-w-4xl px-4 sm:h-[460px] ${headingVisible ? 'is-visible' : ''}`}
+      >
+        {reviewsData.map((review, i) => {
+          const { rotate, left, top, z } = layoutFor(i, n);
+          return (
+            <TestimonialCard
+              key={review.id}
+              review={review}
+              index={i}
+              accent={accents[i % accents.length]}
+              style={{
+                top: `${top}%`,
+                left: `${left}%`,
+                zIndex: z,
+                transform: `translate(-50%, -50%) rotate(${rotate}deg)`,
+              }}
+            />
+          );
+        })}
       </div>
     </section>
   );
