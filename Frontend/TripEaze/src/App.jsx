@@ -35,8 +35,9 @@ function Home() {
       <Info3 />
       <MovingText />
       <Package />
-      <FAQ />
+      
       <Review />
+      <FAQ />
       <Footer />
     </>
   );
