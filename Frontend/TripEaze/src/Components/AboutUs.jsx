@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 
-// Photo for the right side. A portrait-ish photo of someone overlooking a
-// landscape works best.
+
 import aboutImage from "../assets/about2.png";
 import Navbar from "../Components/Navbar";
 
