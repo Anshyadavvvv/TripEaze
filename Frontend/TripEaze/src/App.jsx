@@ -25,6 +25,7 @@ import AdminPanel from "./Components/AdminPanel";
 import AboutUs from "./Components/AboutUs";
 import Contact from "./Components/Contact";
 import ProtectedRoute from "./Components/ProtectedRoute";
+import ScrollToTop from "./Components/ScrollToTop";
 function Home() {
   return (
     <>
@@ -45,28 +46,31 @@ function Home() {
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/utkarshadmin" element={<AdminLogin />} />
+    <>
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/utkarshadmin" element={<AdminLogin />} />
 
-      <Route path="/packages" element={<Packages />} />
-      <Route path="/about" element={<AboutUs />} />
-      <Route path="/contact" element={<Contact />} />
+        <Route path="/packages" element={<Packages />} />
+        <Route path="/about" element={<AboutUs />} />
+        <Route path="/contact" element={<Contact />} />
 
-      <Route element={<ProtectedRoute />}>
-        <Route path="/utkarshadmin/adminpanel" element={<AdminPanel />} />
-      </Route>
-      <Route path="/packages/bir" element={<Bir />} />
-      {<Route path="/packages/triund" element={<Triund />} />}
-      {<Route path="/packages/chakrata-moila" element={<ChakrataMoila />} />}
-      {<Route path="/packages/kasol" element={<Kasol />} />}
-      {<Route path="/packages/shangarh-sainj" element={<ShangarhSainj />} />}
-      <Route path="/packages/bir/enquiry" element={<Enquiry />} />
-      <Route path="/packages/triund/enquiry" element={<Enquiry />} />
-      <Route path="/packages/kasol/enquiry" element={<Enquiry />} />
-      <Route path="/packages/chakrata-moila/enquiry" element={<Enquiry />} />
-      <Route path="/packages/shangarh-sainj/enquiry" element={<Enquiry />} />
-    </Routes>
+        <Route element={<ProtectedRoute />}>
+          <Route path="/utkarshadmin/adminpanel" element={<AdminPanel />} />
+        </Route>
+        <Route path="/packages/bir" element={<Bir />} />
+        {<Route path="/packages/triund" element={<Triund />} />}
+        {<Route path="/packages/chakrata-moila" element={<ChakrataMoila />} />}
+        {<Route path="/packages/kasol" element={<Kasol />} />}
+        {<Route path="/packages/shangarh-sainj" element={<ShangarhSainj />} />}
+        <Route path="/packages/bir/enquiry" element={<Enquiry />} />
+        <Route path="/packages/triund/enquiry" element={<Enquiry />} />
+        <Route path="/packages/kasol/enquiry" element={<Enquiry />} />
+        <Route path="/packages/chakrata-moila/enquiry" element={<Enquiry />} />
+        <Route path="/packages/shangarh-sainj/enquiry" element={<Enquiry />} />
+      </Routes>
+    </>
   );
 }
 
