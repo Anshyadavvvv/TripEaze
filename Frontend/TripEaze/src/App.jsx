@@ -25,7 +25,7 @@ import AdminPanel from "./Components/AdminPanel";
 import AboutUs from "./Components/AboutUs";
 import Contact from "./Components/Contact";
 import ProtectedRoute from "./Components/ProtectedRoute";
-
+import ScrollToTop from "./Components/ScrollToTop";
 function Home() {
   return (
     <>
@@ -47,7 +47,7 @@ function Home() {
 function App() {
   return (
     <>
-      
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/utkarshadmin" element={<AdminLogin />} />
