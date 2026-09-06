@@ -32,10 +32,11 @@ function Home() {
       <Navbar />
       <Hero />
       <Info />
-      <Info2 />
-      <Info3 />
       <MovingText />
       <Package />
+      <Info2 />
+      <Info3 />
+      
       
       <Review />
       <FAQ />
