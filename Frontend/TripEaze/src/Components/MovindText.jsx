@@ -15,7 +15,7 @@ const destinations = [
 export default function MovingText() {
   return (
     <section
-      className="relative overflow-hidden bg-[#0B1330] py-14 sm:py-16"
+      className="relative overflow-hidden bg-[#0B1330] py-7 sm:py-8"
       style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
     >
       <link
@@ -53,18 +53,8 @@ export default function MovingText() {
         }
       `}</style>
 
-      {/* Eyebrow */}
-      <div className="relative mb-9 px-6 text-center sm:mb-10">
-        <p
-          className="text-[11px] font-bold uppercase tracking-[0.32em] text-[#F5A83C]"
-        >
-          Where We Take You
-        </p>
-        <span className="mx-auto mt-3 block h-px w-14 bg-white/15" />
-      </div>
-
       {/* Top / bottom hairlines frame the belt like a ticket strip */}
-      <div className="pointer-events-none absolute inset-x-0 top-[76px] h-px bg-white/[0.07] sm:top-[84px]" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-white/[0.07]" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-white/[0.07]" />
 
       {/* Edge fade */}
@@ -90,13 +80,13 @@ export default function MovingText() {
           <div key={i} className="flex shrink-0 items-center">
             <span
               tabIndex={0}
-              className="group/word relative cursor-default whitespace-nowrap px-6 py-2 outline-none sm:px-8 md:px-10"
+              className="group/word relative cursor-default whitespace-nowrap px-6 py-1 outline-none sm:px-8 md:px-10"
             >
               <span
                 className="block font-extrabold uppercase text-white/90 transition-all duration-300 ease-out group-hover/word:scale-110 group-hover/word:text-[#F5A83C] group-focus-visible/word:scale-110 group-focus-visible/word:text-[#F5A83C]"
                 style={{
                   fontFamily: "'Bricolage Grotesque', sans-serif",
-                  fontSize: "clamp(24px, 5.4vw, 62px)",
+                  fontSize: "clamp(20px, 4.6vw, 52px)",
                   letterSpacing: "0.04em",
                   lineHeight: 1,
                 }}
