@@ -190,6 +190,16 @@ export default function Footer() {
           </div>
         </div>
       </div>
+
+      {/* Brand watermark, echoes the hairline's orange -> teal -> orange sweep at low opacity */}
+      <div className="relative w-full select-none pt-8 pb-1 sm:pt-12 sm:pb-2 md:pt-14" aria-hidden="true">
+        <p
+          className="te-display text-center font-extrabold leading-none tracking-tight whitespace-nowrap text-transparent bg-clip-text bg-gradient-to-r from-[#F5A83C]/[0.18] via-white/[0.14] to-[#2DD4BF]/[0.18] te-rise"
+          style={{ fontSize: "clamp(2.5rem, 13vw, 9rem)", animationDelay: "260ms" }}
+        >
+          TripEaze
+        </p>
+      </div>
     </footer>
   );
 }
