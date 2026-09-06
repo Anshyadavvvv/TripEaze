@@ -32,8 +32,9 @@ function Home() {
       <Navbar />
       <Hero />
       <Info />
-      <MovingText />
+      
       <Package />
+      <MovingText />
       <Info2 />
       <Info3 />
       
