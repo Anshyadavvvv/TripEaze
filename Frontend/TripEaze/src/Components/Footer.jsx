@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 // Place the provided background image at: src/assets/footer2.png
 import footerBg from "../assets/footer2.png";
-import tripeazeLogo from "../assets/tripeaze_logo.png";
+import tripeazeLogo from "../assets/logo5.png";
 
 export default function Footer() {
   const [email, setEmail] = useState("");

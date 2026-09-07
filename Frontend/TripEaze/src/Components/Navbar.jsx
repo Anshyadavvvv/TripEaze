@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import logo from "../assets/tripeaze_logo.png";
+import logo from "../assets/logo6.png";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -30,11 +30,11 @@ export default function Navbar() {
           <img
             src={logo}
             alt="TripEaze"
-            className="h-9 w-9 rounded-full object-cover"
+            className="h-14 w-16 object-contain"
           />
-          <span className="hidden sm:block text-[15px] font-bold tracking-tight text-white">
+          {/* <span className="hidden sm:block text-[15px] font-bold tracking-tight text-white">
             Trip<span className="text-[#F5A83C]">eaze</span>
-          </span>
+          </span> */}
         </NavLink>
 
         {/* Desktop links */}

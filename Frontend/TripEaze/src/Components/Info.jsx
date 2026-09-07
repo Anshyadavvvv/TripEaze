@@ -68,7 +68,7 @@ export default function Info() {
   return (
     <section
       ref={sectionRef}
-      className="bg-[#0B1330] py-14"
+      className="bg-[#0B1330] py-10"
       style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
     >
       <div className="mx-auto grid max-w-6xl grid-cols-2 gap-y-10 px-6 sm:px-10 md:grid-cols-4 md:divide-x md:divide-white/10">

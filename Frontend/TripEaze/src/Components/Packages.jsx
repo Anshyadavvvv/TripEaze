@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import ChakrataMoila from "../assets/ChakrataMoila.png";
-import Bir from "../assets/Bir.png";
+import Bir from "../assets/Bir3.png";
 import Kasol from "../assets/Kasol.png";
 import Triund from "../assets/Triund.png";
 import ShahganjShah from "../assets/ShahganjShah.png";

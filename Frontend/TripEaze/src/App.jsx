@@ -26,6 +26,7 @@ import AboutUs from "./Components/AboutUs";
 import Contact from "./Components/Contact";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import ScrollToTop from "./Components/ScrollToTop";
+import Blog from "./Components/Blog";
 function Home() {
   return (
     <>
@@ -57,6 +58,7 @@ function App() {
         <Route path="/packages" element={<Packages />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/blog" element={<Blog/>} />
 
         <Route element={<ProtectedRoute />}>
           <Route path="/utkarshadmin/adminpanel" element={<AdminPanel />} />
