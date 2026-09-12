@@ -67,11 +67,8 @@ export default function Footer() {
               <img
                 src={tripeazeLogo}
                 alt="TripEaze"
-                className="h-9 w-9 rounded-full object-cover border border-[#F5A83C]/30"
+                className="h-14 w-14 rounded-full object-cover border border-[#F5A83C]/30"
               />
-              <span className="te-display text-xl font-bold text-white tracking-tight">
-                TripEaze
-              </span>
             </div>
             <p className="mt-4 text-sm leading-relaxed text-slate-300/90 max-w-xs">
               Handpicked travel packages and journeys planned around how you
