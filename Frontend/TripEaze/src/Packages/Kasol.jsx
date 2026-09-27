@@ -112,7 +112,7 @@ export default function Kasol() {
             {/* Brief itinerary — snapshot timeline */}
             <div>
               <SectionHeading accent="#F2894E" title="Brief Itinerary" />
-              <div className="relative mt-8 space-y-8 border-l-2 border-dashed border-[#0B1330]/15 pl-8">
+              <div className="mt-8">
                 <TimelineItem
                   accent="#F2894E"
                   day="Day 0"
@@ -261,13 +261,27 @@ export default function Kasol() {
 
             {/* Inclusions / Exclusions */}
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-              <div className="rounded-2xl border border-[#0B1330]/[0.06] bg-white p-6 shadow-[0_2px_10px_rgba(11,19,48,0.04)]">
-                <h3
-                  className="text-[17px] font-bold text-[#0B1330]"
-                  style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
-                >
-                  Inclusions
-                </h3>
+              <div className="relative overflow-hidden rounded-2xl border border-[#0B1330]/[0.06] bg-white p-6 pt-5 shadow-[0_2px_10px_rgba(11,19,48,0.04)]">
+                <span className="absolute inset-x-0 top-0 h-1 bg-[#22C55E]" />
+                <div className="flex items-center gap-2.5">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#22C55E]/10">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+                      <path
+                        d="M5 13l4 4L19 7"
+                        stroke="#22C55E"
+                        strokeWidth="2.4"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </span>
+                  <h3
+                    className="text-[17px] font-bold text-[#0B1330]"
+                    style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+                  >
+                    Inclusions
+                  </h3>
+                </div>
                 <ul className="mt-4 space-y-3 text-[14px] text-[#0B1330]/70">
                   <CheckItem>2 Nights stay at Manali (Hotel)</CheckItem>
                   <CheckItem>1 Night stay at Kasol</CheckItem>
@@ -281,13 +295,26 @@ export default function Kasol() {
                 </ul>
               </div>
 
-              <div className="rounded-2xl border border-[#0B1330]/[0.06] bg-white p-6 shadow-[0_2px_10px_rgba(11,19,48,0.04)]">
-                <h3
-                  className="text-[17px] font-bold text-[#0B1330]"
-                  style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
-                >
-                  Exclusions
-                </h3>
+              <div className="relative overflow-hidden rounded-2xl border border-[#0B1330]/[0.06] bg-white p-6 pt-5 shadow-[0_2px_10px_rgba(11,19,48,0.04)]">
+                <span className="absolute inset-x-0 top-0 h-1 bg-[#E8637A]" />
+                <div className="flex items-center gap-2.5">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#E8637A]/10">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+                      <path
+                        d="M6 6l12 12M18 6L6 18"
+                        stroke="#E8637A"
+                        strokeWidth="2.4"
+                        strokeLinecap="round"
+                      />
+                    </svg>
+                  </span>
+                  <h3
+                    className="text-[17px] font-bold text-[#0B1330]"
+                    style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+                  >
+                    Exclusions
+                  </h3>
+                </div>
                 <ul className="mt-4 space-y-3 text-[14px] text-[#0B1330]/70">
                   <CrossItem>Any other food & beverages</CrossItem>
                   <CrossItem>River Rafting</CrossItem>
@@ -412,21 +439,42 @@ export default function Kasol() {
                 to="/packages/kasol/enquiry"
                 className="mt-6 flex items-center justify-center gap-2 rounded-full bg-[#0B1330] px-6 py-3.5 text-[15px] font-semibold text-white transition-all duration-300 hover:bg-[#F5A83C] hover:text-[#0B1330] hover:shadow-lg"
               >
-                Enquire Now
+                Book Now
                 <span aria-hidden>→</span>
               </NavLink>
 
-              <a
-                href="https://wa.me/919929190452?text=Hi!%20I'm%20interested%20in%20the%20Kasol%20%E2%80%93%20Manali%20package."
-                target="_blank"
-                rel="noreferrer"
-                className="mt-3 flex items-center justify-center gap-2 rounded-full border border-[#0B1330]/10 bg-white px-6 py-3.5 text-[15px] font-semibold text-[#0B1330] transition-all duration-300 hover:border-[#22C55E]/40 hover:bg-[#22C55E]/5"
-              >
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="#22C55E">
-                  <path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.6.8-.8 1-.1.2-.3.2-.5.1-.2-.1-1-.4-2-1.2-.7-.6-1.2-1.4-1.4-1.6-.1-.2 0-.4.1-.5l.4-.5c.1-.2.2-.3.2-.4.1-.2 0-.4 0-.5s-.6-1.4-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.2-.9.9-.9 2.2s1 2.6 1.1 2.8c.1.2 2 3 4.7 4.2.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z" />
-                </svg>
-                Enquire on WhatsApp
-              </a>
+              <div className="mt-3 flex items-center gap-2">
+                <a
+                  href="https://wa.me/919929190452?text=Hi!%20I'm%20interested%20in%20the%20Kasol%20%E2%80%93%20Manali%20package."
+                  target="_blank"
+                  rel="noreferrer"
+                  title="Enquire on WhatsApp"
+                  className="flex flex-1 items-center justify-center gap-1.5 rounded-full border border-[#0B1330]/10 bg-white px-3 py-3 text-[13px] font-semibold text-[#0B1330] transition-all duration-300 hover:border-[#22C55E]/40 hover:bg-[#22C55E]/5"
+                >
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="#22C55E" className="shrink-0">
+                    <path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.6.8-.8 1-.1.2-.3.2-.5.1-.2-.1-1-.4-2-1.2-.7-.6-1.2-1.4-1.4-1.6-.1-.2 0-.4.1-.5l.4-.5c.1-.2.2-.3.2-.4.1-.2 0-.4 0-.5s-.6-1.4-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.2-.9.9-.9 2.2s1 2.6 1.1 2.8c.1.2 2 3 4.7 4.2.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z" />
+                  </svg>
+                  WhatsApp
+                </a>
+
+                <a
+                  href="/itineraries/kasol-itinerary.pdf"
+                  download="Kasol-Itinerary.pdf"
+                  title="Download the full itinerary PDF"
+                  className="flex flex-1 items-center justify-center gap-1.5 rounded-full border border-[#0B1330]/10 bg-white px-3 py-3 text-[13px] font-semibold text-[#0B1330] transition-all duration-300 hover:border-[#3FA8DE]/40 hover:bg-[#3FA8DE]/5"
+                >
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" className="shrink-0">
+                    <path
+                      d="M12 3v11m0 0 3.5-3.5M12 14l-3.5-3.5M5 17v2a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-2"
+                      stroke="#3FA8DE"
+                      strokeWidth="1.8"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                  Get Itinerary
+                </a>
+              </div>
 
               <p className="mt-4 text-center text-[12px] text-[#0B1330]/40">
                 Booking amount ₹2,000/person · Balance while boarding
@@ -446,10 +494,10 @@ function SectionHeading({ accent, title, compact }) {
     <div className="flex items-center gap-3">
       <span
         className="h-8 w-1.5 rounded-full"
-        style={{ backgroundColor: accent }}
+        style={{ backgroundColor: accent, boxShadow: `0 0 12px -2px ${accent}80` }}
       />
       <h2
-        className={`font-bold text-[#0B1330] ${compact ? "text-[19px]" : "text-[24px] sm:text-[28px]"}`}
+        className={`font-bold tracking-tight text-[#0B1330] ${compact ? "text-[19px]" : "text-[24px] sm:text-[28px]"}`}
         style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
       >
         {title}
@@ -459,19 +507,32 @@ function SectionHeading({ accent, title, compact }) {
 }
 
 function TimelineItem({ accent, day, text, last }) {
+  const num = day.match(/\d+/)?.[0] ?? "";
   return (
-    <div className="relative">
+    <div className={`group relative flex gap-4 ${last ? "pb-0" : "pb-8"}`}>
+      {!last && (
+        <span
+          className="absolute left-[19px] top-10 bottom-0 w-0.5 rounded-full"
+          style={{ backgroundColor: `${accent}33` }}
+        />
+      )}
       <span
-        className="absolute -left-[38px] top-0.5 flex h-6 w-6 items-center justify-center rounded-full ring-4 ring-[#F7F7FB]"
+        className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-[13px] font-extrabold text-white shadow-[0_6px_16px_-4px_rgba(11,19,48,0.4)] ring-[5px] ring-[#F7F7FB] transition-transform duration-300 group-hover:scale-110"
         style={{ backgroundColor: accent }}
-      />
-      <p
-        className="text-[12.5px] font-bold uppercase tracking-wide"
-        style={{ color: accent }}
       >
-        {day}
-      </p>
-      <p className="mt-1 text-[15px] font-medium text-[#0B1330]">{text}</p>
+        {num}
+      </span>
+      <div className="flex-1 pt-1">
+        <p
+          className="text-[11.5px] font-bold uppercase tracking-wide"
+          style={{ color: accent }}
+        >
+          {day}
+        </p>
+        <p className="mt-1 text-[15px] font-semibold leading-relaxed text-[#0B1330]">
+          {text}
+        </p>
+      </div>
     </div>
   );
 }
