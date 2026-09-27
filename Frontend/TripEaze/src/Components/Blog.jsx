@@ -1,205 +1,40 @@
-/*
-  Blog.jsx — editorial preview section for the TripEaze homepage.
-  No photography, no icon illustrations: each story gets a duotone
-  colour plate carrying an oversized cropped wordmark, echoing the
-  giant-type treatment already used elsewhere on the site (Footer,
-  Hero). One featured story + a short reading list, print-inspired.
-*/
+import { Link } from "react-router-dom";
+import Navbar from "./Navbar";
+import triundImage from "../assets/Triund.png";
+import birImage from "../assets/Bir.png";
+import kasolImage from "../assets/Kasol.png";
 
-function CoverPlate({ from, to, word, wordClassName, className }) {
-  return (
-    <div
-      className={`relative overflow-hidden ${className}`}
-      style={{ background: `linear-gradient(135deg, ${from}, ${to})` }}
-    >
-      <span
-        aria-hidden="true"
-        className={`pointer-events-none absolute inset-0 flex select-none items-end justify-center whitespace-nowrap font-extrabold leading-none tracking-tighter text-white/[0.16] ${wordClassName}`}
-        style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
-      >
-        {word}
-      </span>
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.07]"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle at 1px 1px, #ffffff 1px, transparent 0)",
-          backgroundSize: "16px 16px",
-        }}
-      />
-    </div>
-  );
-}
-
-const featured = {
-  id: "himalayan-treks",
-  category: "Trekking",
-  accent: "#4B4F8C",
-  from: "#0B1330",
-  to: "#2A2F63",
-  word: "Himalaya",
-  title: "5 Himalayan treks every first-timer should attempt",
-  excerpt:
-    "From gentle day hikes near Triund to a proper multi-day climb toward Chandrashila — a beginner's map to the ranges.",
-  readTime: "6 min read",
-  date: "Aug 2026",
-};
-
-const secondaryPosts = [
-  {
-    id: "western-coast-beaches",
-    category: "Coastal",
-    accent: "#0E7C72",
-    from: "#0E4F4A",
-    to: "#2DD4BF",
-    letter: "C",
-    title: "Hidden beaches along India's western coast",
-    readTime: "5 min read",
-    date: "Jul 2026",
-  },
-  {
-    id: "udaipur-weekend",
-    category: "City guide",
-    accent: "#B9701F",
-    from: "#7A3B1E",
-    to: "#F5A83C",
-    letter: "U",
-    title: "48 hours in Udaipur: a weekend itinerary",
-    readTime: "4 min read",
-    date: "Jul 2026",
-  },
-  {
-    id: "spiti-road-trip",
-    category: "Road trips",
-    accent: "#B23F63",
-    from: "#4A1942",
-    to: "#E8637A",
-    letter: "S",
-    title: "The ultimate Spiti Valley road trip route",
-    readTime: "7 min read",
-    date: "Jun 2026",
-  },
+const stories = [
+  { category: "Mountain notes", date: "08 Aug 2026", title: "A quieter way to meet the Himalayas", copy: "The small choices that make a mountain escape feel less rushed and far more rewarding.", image: triundImage, alt: "View of the Himalayan mountains" },
+  { category: "On the road", date: "25 Jul 2026", title: "Why Bir is made for an unhurried weekend", copy: "Paragliding may draw you in, but the valley's slower rhythm is the real reason to stay.", image: birImage, alt: "Landscape in Bir" },
+  { category: "Field guide", date: "10 Jul 2026", title: "Kasol beyond the usual itinerary", copy: "A thoughtful route through forest trails, riverside stops, and the corners worth lingering in.", image: kasolImage, alt: "Kasol valley scenery" },
 ];
 
 export default function Blog() {
   return (
-    <section
-      className="relative bg-white py-20 sm:py-24"
-      style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
-    >
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
-      />
-      <style>{`
-        @keyframes te-rise {
-          0% { transform: translateY(18px); opacity: 0; }
-          100% { transform: translateY(0); opacity: 1; }
-        }
-        .te-rise { animation: te-rise 700ms cubic-bezier(0.16, 1, 0.3, 1) both; }
-        @media (prefers-reduced-motion: reduce) {
-          .te-rise { animation: none !important; }
-        }
-      `}</style>
+    <main className="min-h-screen bg-[#fbfaf7] pb-16 pt-28 text-[#10203a] sm:pb-24 sm:pt-36" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" />
+      <Navbar />
+      <section className="mx-auto max-w-7xl px-6 sm:px-8">
+        <header className="border-b border-[#10203a]/15 pb-11 sm:pb-14">
+          <p className="mb-6 flex items-center gap-3 text-xs font-bold uppercase tracking-[0.22em] text-[#c56b3f]"><span className="h-px w-9 bg-[#c56b3f]" />The TripEaze journal</p>
+          <div className="grid gap-8 lg:grid-cols-[1fr_.65fr] lg:items-end"><h1 className="text-5xl leading-[0.98] tracking-[-0.055em] sm:text-6xl lg:text-7xl" style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}>Good places. Better stories.</h1><p className="max-w-lg leading-8 text-[#526073] sm:text-lg">Practical notes, local perspective, and a little inspiration for the next time you decide to go.</p></div>
+        </header>
 
-      <div className="mx-auto max-w-6xl px-6 sm:px-8">
-        {/* Masthead */}
-        <div className="te-rise flex flex-col gap-4 border-b border-[#0B1330]/[0.08] pb-8 sm:flex-row sm:items-end sm:justify-between sm:pb-10">
-          <h2
-            className="text-[32px] font-bold leading-tight tracking-tight text-[#0B1330] sm:text-[40px] lg:text-[44px]"
-            style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
-          >
-            Notes from the road
-          </h2>
-          <a
-            href="/blog"
-            className="inline-block shrink-0 border-b border-[#0B1330]/20 pb-0.5 text-sm font-semibold text-[#0B1330] transition-colors duration-200 hover:border-[#F5A83C] hover:text-[#F5A83C]"
-          >
-            View all stories
-          </a>
-        </div>
+        <section className="grid gap-0 border-b border-[#10203a]/15 py-12 lg:grid-cols-[1.3fr_.7fr] lg:py-16">
+          <div className="pr-0 lg:pr-16"><div className="overflow-hidden bg-[#d9ded7]"><img src={stories[0].image} alt={stories[0].alt} className="h-[300px] w-full object-cover sm:h-[430px]" /></div></div>
+          <article className="flex flex-col justify-center pt-7 lg:pt-0"><p className="text-xs font-bold uppercase tracking-[0.18em] text-[#c56b3f]">Featured / {stories[0].date}</p><h2 className="mt-5 text-3xl leading-tight tracking-[-0.04em] sm:text-4xl" style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}>{stories[0].title}</h2><p className="mt-5 max-w-md leading-7 text-[#526073]">{stories[0].copy}</p><span className="mt-7 inline-flex w-fit items-center gap-3 border-b border-[#10203a] pb-2 text-sm font-bold">Read story <span aria-hidden="true">↗</span></span></article>
+        </section>
 
-        <div className="mt-12 grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-14">
-          {/* Featured story */}
-          <article
-            className="te-rise lg:col-span-7"
-            style={{ animationDelay: "120ms" }}
-          >
-            <a href={`/blog/${featured.id}`} className="group block">
-              <CoverPlate
-                from={featured.from}
-                to={featured.to}
-                word={featured.word}
-                wordClassName="text-[4rem] pb-2 sm:text-[6rem] lg:text-[7.5rem]"
-                className="aspect-[4/3] rounded-[28px] shadow-[0_25px_60px_-20px_rgba(11,19,48,0.35)] transition-transform duration-500 ease-out group-hover:-translate-y-1 sm:aspect-[16/10] lg:aspect-[4/5]"
-              />
-            </a>
-            <div className="mt-6">
-              <p className="text-sm font-semibold" style={{ color: featured.accent }}>
-                {featured.category}
-              </p>
-              <h3
-                className="mt-2 text-2xl font-bold leading-snug text-[#0B1330] sm:text-[28px]"
-                style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
-              >
-                <a href={`/blog/${featured.id}`} className="hover:text-[#F5A83C] transition-colors duration-200">
-                  {featured.title}
-                </a>
-              </h3>
-              <p className="mt-3 max-w-lg text-[15px] leading-relaxed text-[#5A6394]">
-                {featured.excerpt}
-              </p>
-              <div className="mt-5 flex items-center gap-3 text-sm text-[#8891B5]">
-                <span>{featured.readTime}</span>
-                <span aria-hidden="true">•</span>
-                <span>{featured.date}</span>
-              </div>
-            </div>
-          </article>
-
-          {/* Reading list */}
-          <div
-            className="te-rise flex flex-col divide-y divide-[#0B1330]/[0.08] lg:col-span-5"
-            style={{ animationDelay: "220ms" }}
-          >
-            {secondaryPosts.map((post) => (
-              <a
-                key={post.id}
-                href={`/blog/${post.id}`}
-                className="group flex items-center gap-5 py-6 first:pt-0 last:pb-0"
-              >
-                <CoverPlate
-                  from={post.from}
-                  to={post.to}
-                  word={post.letter}
-                  wordClassName="text-[3.25rem] pb-0.5 sm:text-[3.75rem]"
-                  className="h-20 w-20 shrink-0 rounded-2xl transition-transform duration-500 ease-out group-hover:scale-105 sm:h-24 sm:w-24"
-                />
-                <div className="min-w-0 flex-1">
-                  <p className="text-xs font-semibold" style={{ color: post.accent }}>
-                    {post.category}
-                  </p>
-                  <h4
-                    className="mt-1 truncate text-base font-bold text-[#0B1330] sm:text-[17px]"
-                    style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
-                  >
-                    {post.title}
-                  </h4>
-                  <p className="mt-1 text-xs text-[#8891B5]">
-                    {post.readTime} · {post.date}
-                  </p>
-                </div>
-                <span
-                  aria-hidden="true"
-                  className="shrink-0 text-xl text-[#0B1330]/25 transition-all duration-200 group-hover:translate-x-1 group-hover:text-[#F5A83C]"
-                >
-                  ›
-                </span>
-              </a>
-            ))}
+        <section className="pt-12 lg:pt-16">
+          <div className="mb-8 flex items-center justify-between sm:mb-10"><h2 className="text-2xl tracking-[-0.04em] sm:text-3xl" style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}>Latest dispatches</h2><span className="text-xs font-bold uppercase tracking-[0.18em] text-[#738093]">03 stories</span></div>
+          <div className="grid gap-10 md:grid-cols-3 md:gap-7">
+            {stories.map((story) => <article key={story.title} className="group"><div className="overflow-hidden bg-[#e9e5dc]"><img src={story.image} alt={story.alt} className="h-64 w-full object-cover transition duration-500 group-hover:scale-[1.03] sm:h-72" /></div><div className="border-b border-[#10203a]/15 pb-7 pt-5"><p className="text-xs font-bold uppercase tracking-[0.16em] text-[#c56b3f]">{story.category} <span className="mx-2 text-[#10203a]/35">/</span> {story.date}</p><h3 className="mt-3 text-2xl leading-tight tracking-[-0.035em]" style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}>{story.title}</h3><p className="mt-3 text-sm leading-6 text-[#526073]">{story.copy}</p><span className="mt-5 inline-block text-sm font-bold transition-colors group-hover:text-[#c56b3f]">Read notes →</span></div></article>)}
           </div>
-        </div>
-      </div>
-    </section>
+        </section>
+
+        <section className="mt-16 bg-[#10203a] px-7 py-10 text-white sm:mt-24 sm:flex sm:items-center sm:justify-between sm:px-12 sm:py-12"><div><p className="text-xs font-bold uppercase tracking-[0.2em] text-[#e4a26f]">Ready when you are</p><h2 className="mt-3 text-3xl tracking-[-0.035em] sm:text-4xl" style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}>Find your next good story.</h2></div><Link to="/packages" className="mt-7 inline-flex items-center gap-3 bg-[#f7f4ee] px-5 py-3 text-sm font-bold text-[#10203a] transition-colors hover:bg-[#e4a26f] sm:mt-0">Explore trips <span aria-hidden="true">→</span></Link></section>
+      </section>
+    </main>
   );
 }

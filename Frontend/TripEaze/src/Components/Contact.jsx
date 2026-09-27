@@ -1,106 +1,30 @@
-import React from "react";
-import Navbar from '../Components/Navbar'
-
-
-
-
+import Navbar from "./Navbar";
+import contactImage from "../assets/contact.png";
 
 const contactDetails = [
-  {
-    label: "Name",
-    value: "Utkarsh Yadav",
-    icon: <path d="M20 21a8 8 0 1 0-16 0" />,
-    icon2: <circle cx="12" cy="7" r="4" />,
-  },
-  {
-    label: "Phone Number",
-    value: "9929190452",
-    icon: (
-      <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.4 2.1L8 9.9a16 16 0 0 0 6 6l1.4-1.4a2 2 0 0 1 2.1-.4c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.8 2.2Z" />
-    ),
-  },
-  {
-    label: "Address",
-    value: "DELHI",
-    icon: (
-      <>
-        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
-        <circle cx="12" cy="10" r="3" />
-      </>
-    ),
-  },
+  { label: "Call us", value: "9929190452", href: "tel:9929190452" },
+  { label: "Find us", value: "Delhi, India", href: "https://maps.google.com/?q=Delhi,India" },
 ];
 
 export default function Contact() {
   return (
-    <section className="relative overflow-hidden bg-[#FAF6EF] py-20">
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Sora:wght@700;800;900&family=Inter:wght@400;500;600&display=swap');
-        .te-display { font-family: 'Sora', ui-sans-serif, system-ui, sans-serif; }
-        .te-body { font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; }
-      `}</style>
-      <Navbar/>
-      <div className="mx-auto max-w-3xl px-6 py-20 sm:px-10">
-        {/* ---- Text + contact details ---- */}
-        <div className="relative flex min-w-0 flex-col items-center overflow-hidden text-center">
-          {/* decorative shapes */}
-          <div className="pointer-events-none absolute inset-0 hidden lg:block">
-            <div className="absolute -left-10 top-8 grid grid-cols-4 gap-2.5 opacity-70">
-              {Array.from({ length: 16 }).map((_, i) => (
-                <span key={i} className="h-1.5 w-1.5 rounded-full bg-[#2DD4BF]" />
-              ))}
+    <main className="min-h-screen bg-[#f7f4ee] pb-16 pt-28 text-[#10203a] sm:pb-24 sm:pt-36" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" />
+      <Navbar />
+      <section className="mx-auto max-w-7xl px-6 sm:px-8">
+        <div className="grid overflow-hidden border border-[#10203a]/15 lg:grid-cols-[.95fr_1.05fr]">
+          <div className="relative min-h-[360px] bg-[#203856] lg:min-h-[690px]"><img src={contactImage} alt="Traveller looking out at a mountain view" className="absolute inset-0 h-full w-full object-cover opacity-80" /><div className="absolute inset-0 bg-[#10203a]/45" /><div className="absolute inset-x-0 bottom-0 p-7 text-white sm:p-10"><p className="max-w-sm text-3xl leading-tight tracking-[-0.035em] sm:text-4xl" style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}>A good trip starts with a simple hello.</p></div></div>
+          <div className="px-7 py-10 sm:px-12 sm:py-14 lg:px-16 lg:py-16">
+            <p className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.22em] text-[#c56b3f]"><span className="h-px w-9 bg-[#c56b3f]" />Contact TripEaze</p>
+            <h1 className="mt-6 text-5xl leading-[0.98] tracking-[-0.055em] sm:text-6xl" style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}>Let’s plan something worth looking forward to.</h1>
+            <p className="mt-6 max-w-lg leading-8 text-[#526073]">Whether you already know where you want to go or just need a spark, our team is here to help you shape the right escape.</p>
+            <div className="mt-10 divide-y divide-[#10203a]/15 border-y border-[#10203a]/15">
+              {contactDetails.map((detail) => <a key={detail.label} href={detail.href} target={detail.href.startsWith("http") ? "_blank" : undefined} rel={detail.href.startsWith("http") ? "noreferrer" : undefined} className="group flex items-center justify-between gap-5 py-5"><div><p className="text-xs font-bold uppercase tracking-[0.17em] text-[#738093]">{detail.label}</p><p className="mt-1 text-lg font-semibold tracking-[-0.02em] group-hover:text-[#c56b3f]">{detail.value}</p></div><span className="text-xl text-[#c56b3f] transition-transform group-hover:translate-x-1" aria-hidden="true">↗</span></a>)}
             </div>
-            <div className="absolute right-[8%] top-2 h-16 w-16 overflow-hidden rounded-t-full bg-[#F5A83C]" />
-            <svg className="absolute left-[10%] top-24" width="90" height="30" viewBox="0 0 90 30" fill="none" stroke="#2DD4BF" strokeWidth="2.2">
-              <path d="M2 15c5-8 10 8 15 0s10-8 15 0 10-8 15 0 10-8 15 0" />
-            </svg>
-            <div className="absolute -right-10 bottom-[10%] grid grid-cols-4 gap-2.5 opacity-70">
-              {Array.from({ length: 16 }).map((_, i) => (
-                <span key={i} className="h-1.5 w-1.5 rounded-full bg-[#F5A83C]" />
-              ))}
-            </div>
-            <div className="absolute -bottom-8 -left-8 h-32 w-32 rounded-full bg-[#F5A83C]/80" />
-          </div>
-
-          <div className="relative">
-            <h1 className="te-display text-4xl font-extrabold leading-[1.05] text-[#0B1330] sm:text-5xl lg:text-6xl">
-              LET'S
-              <br />
-              <span className="text-[#0F8F86]">TRAVEL</span>
-              <br />
-              TOGETHER
-            </h1>
-            <span className="mx-auto mt-5 block h-1.5 w-24 rounded-full bg-[#F5A83C]" />
-
-            <p className="te-body mx-auto mt-6 max-w-sm text-[15px] leading-relaxed text-[#3F4B63]">
-              Have questions or want to plan your next adventure? We're here
-              to help!
-            </p>
-
-            <div className="mx-auto mt-8 max-w-sm text-left divide-y divide-[#0B1330]/[0.08]">
-              {contactDetails.map((item) => (
-                <div key={item.label} className="flex items-center gap-4 py-3.5">
-                  <span className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full bg-[#0F8F86] text-white">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      {item.icon}
-                      {item.icon2}
-                    </svg>
-                  </span>
-                  <div>
-                    <p className="te-display text-[15px] font-bold text-[#0B1330]">{item.value}</p>
-                    <p className="text-xs text-[#8A93A8]">{item.label}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <p className="te-body mx-auto mt-8 flex items-center justify-center gap-2 text-[15px] font-medium text-[#0F8F86]">
-              We'd love to hear from you!
-              <span className="text-[#F5A83C]">♥</span>
-            </p>
+            <div className="mt-10 border-l-2 border-[#c56b3f] pl-5"><p className="text-sm font-bold text-[#10203a]">Planning a group getaway?</p><p className="mt-1 text-sm leading-6 text-[#526073]">Call us with your dates and destination ideas. We’ll take it from there.</p></div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </main>
   );
 }
