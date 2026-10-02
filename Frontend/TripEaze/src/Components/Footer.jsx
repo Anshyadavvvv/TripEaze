@@ -194,7 +194,7 @@ export default function Footer() {
           className="te-display text-center font-extrabold leading-none tracking-tighter whitespace-nowrap text-transparent bg-clip-text bg-gradient-to-r from-[#F5A83C]/[0.18] via-white/[0.14] to-[#2DD4BF]/[0.18] te-rise"
           style={{ fontSize: "clamp(3.25rem, 19vw, 13.5rem)", animationDelay: "260ms" }}
         >
-          TripEaze
+         Safiri
         </p>
       </div>
     </footer>
