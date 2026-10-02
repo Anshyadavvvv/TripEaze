@@ -401,7 +401,7 @@ export default function Bir() {
 
               <NavLink
                 to="/packages/bir/enquiry"
-                className="mt-6 flex items-center justify-center gap-2 rounded-full bg-[#0B1330] px-6 py-3.5 text-[15px] font-semibold text-white transition-all duration-300 hover:bg-[#F5A83C] hover:text-[#0B1330] hover:shadow-lg"
+                className="mt-6 flex items-center justify-center gap-2 rounded-full bg-[#004741] px-6 py-3.5 text-[15px] font-semibold text-white transition-all duration-300 hover:bg-[#F5A83C] hover:text-[#004741] hover:shadow-lg"
               >
                 Book Now
                 <span aria-hidden>→</span>

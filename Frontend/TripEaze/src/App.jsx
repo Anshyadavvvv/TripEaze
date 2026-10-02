@@ -27,6 +27,7 @@ import Contact from "./Components/Contact";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import ScrollToTop from "./Components/ScrollToTop";
 import Blog from "./Components/Blog";
+import Info4 from "./Components/Info4";
 function Home() {
   return (
     <>
@@ -37,6 +38,7 @@ function Home() {
       <Package />
       <MovingText />
       <Info2 />
+      <Info4/>
       <Info3 />
       
       

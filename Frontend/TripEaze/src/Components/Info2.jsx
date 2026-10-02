@@ -110,7 +110,7 @@ export default function Info2() {
         </div>
 
         <a
-          href="#enquiry"
+          href="/packages"
           className="mt-14 inline-flex items-center gap-2 rounded-full bg-[#0B1330] px-7 py-3.5 text-[15px] font-semibold text-white transition-colors duration-300 hover:bg-[#F5A83C] hover:text-[#0B1330]"
         >
           Start Planning

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 // Place the provided background image at: src/assets/footer2.png
 import footerBg from "../assets/footer2.png";
-import tripeazeLogo from "../assets/logo5.png";
+import safiriLogo from "../assets/Safiri.jpeg";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
@@ -38,7 +38,7 @@ export default function Footer() {
 
       {/* Background image */}
       <div
-        className="absolute inset-0 bg-cover bg-center"
+        className="absolute inset-0 bg-[#004741] bg-cover bg-center"
         style={{ backgroundImage: `url(${footerBg})` }}
       />
       {/* Readability overlay: darken + fade into the page above, keeping the sunset glow visible */}
@@ -46,7 +46,7 @@ export default function Footer() {
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(180deg, #080D24 0%, rgba(8,13,36,0.4) 22%, rgba(14,12,18,0.5) 42%, rgba(8,10,28,0.85) 68%, #05070f 100%)",
+            "linear-gradient(180deg, #004741 0%, rgba(0,71,65,0.4) 22%, rgba(0,45,42,0.5) 42%, rgba(0,35,33,0.85) 68%, #002522 100%)",
         }}
       />
 
@@ -65,9 +65,9 @@ export default function Footer() {
           <div className="md:col-span-4 te-rise">
             <div className="flex items-center gap-2.5">
               <img
-                src={tripeazeLogo}
-                alt="TripEaze"
-                className="h-14 w-14 rounded-full object-cover border border-[#F5A83C]/30"
+                src={safiriLogo}
+                alt="Safiri"
+                className="h-14 w-32 rounded-xl object-cover object-center border border-[#F5A83C]/30"
               />
             </div>
             <p className="mt-4 text-sm leading-relaxed text-slate-300/90 max-w-xs">

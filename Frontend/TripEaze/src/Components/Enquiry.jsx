@@ -145,17 +145,17 @@ export default function EnquiryForm() {
   };
 
   const inputClass = (name) =>
-    `peer w-full border-b bg-transparent pb-2 pt-1 text-[15px] text-[#0B1330] outline-none transition-colors duration-200 placeholder:text-[#0B1330]/30 ${
+    `peer w-full border-b bg-transparent pb-2 pt-1 text-[15px] text-[#004741] outline-none transition-colors duration-200 placeholder:text-[#004741]/30 ${
       errors[name]
         ? "border-[#E8637A]"
-        : "border-[#0B1330]/15 focus:border-[#F5A83C]"
+        : "border-[#004741]/15 focus:border-[#F5A83C]"
     }`;
 
   const labelClass =
-    "te-display block text-[11px] font-semibold uppercase tracking-[0.14em] text-[#6B7488]";
+    "te-display block text-[11px] font-semibold uppercase tracking-[0.14em] text-[#004741]/70";
 
   return (
-    <div className="te-body relative min-h-screen overflow-hidden bg-[#0B1330] px-4 py-10 sm:px-6 md:py-16">
+    <div className="te-body relative min-h-screen overflow-hidden bg-[#004741] px-4 py-10 sm:px-6 md:py-16">
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap');
         .te-display { font-family: 'Sora', ui-sans-serif, system-ui, sans-serif; }
@@ -174,18 +174,18 @@ export default function EnquiryForm() {
       <div
         aria-hidden
         className="pointer-events-none absolute left-1/2 top-0 h-[420px] w-[820px] -translate-x-1/2 rounded-full opacity-[0.14] blur-[110px]"
-        style={{ background: "#F5A83C" }}
+        style={{ background: "#2DD4BF" }}
       />
 
       <div className="te-fade-in relative mx-auto max-w-3xl">
         <div className="mb-6 text-center">
-          <p className="te-display text-[11px] font-semibold uppercase tracking-[0.3em] text-[#F5A83C]">
+          <p className="te-display text-[11px] font-semibold uppercase tracking-[0.3em] text-[#FFD65A]">
             TripEaze
           </p>
           <h1 className="te-display mt-2 text-[26px] font-bold text-white sm:text-[32px]">
             Reserve your enquiry pass
           </h1>
-          <p className="mt-1.5 text-sm text-slate-400">
+          <p className="mt-1.5 text-sm text-white/70">
             Fill this out and our team calls you within a day.
           </p>
         </div>
@@ -196,20 +196,20 @@ export default function EnquiryForm() {
           <div className="relative bg-[#FAF6EF] p-6 sm:flex-1 sm:p-9">
             {isSubmitted ? (
               <div className="flex min-h-[420px] flex-col items-center justify-center py-10 text-center">
-                <div className="te-stamp flex h-20 w-20 items-center justify-center rounded-full border-[3px] border-[#0F8F86] text-[#0F8F86]">
+                <div className="te-stamp flex h-20 w-20 items-center justify-center rounded-full border-[3px] border-[#004741] text-[#004741]">
                   <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <path d="M20 6 9 17l-5-5" />
                   </svg>
                 </div>
-                <p className="te-display mt-5 text-[11px] font-semibold uppercase tracking-[0.25em] text-[#0F8F86]">
+                <p className="te-display mt-5 text-[11px] font-semibold uppercase tracking-[0.25em] text-[#004741]">
                   Enquiry confirmed
                 </p>
-                <h2 className="te-display mt-2 text-2xl font-bold text-[#0B1330]">
+                <h2 className="te-display mt-2 text-2xl font-bold text-[#004741]">
                   Thank you, {formData.name.split(" ")[0] || "traveller"}.
                 </h2>
                 <p className="mt-2 max-w-xs text-[15px] leading-relaxed text-[#6B7488]">
                   We've received your enquiry for{" "}
-                  <span className="font-semibold text-[#0B1330]">
+                  <span className="font-semibold text-[#004741]">
                     {formData.package || "your trip"}
                   </span>
                   . Our team will call you soon.
@@ -222,13 +222,13 @@ export default function EnquiryForm() {
                       setAttempted(false);
                       setFormData(EMPTY_FORM);
                     }}
-                    className="te-display rounded-full bg-[#0B1330] px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#F5A83C] hover:text-[#0B1330]"
+                    className="te-display rounded-full bg-[#004741] px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#F5A83C] hover:text-[#004741]"
                   >
                     Send another enquiry
                   </button>
                   <button
                     onClick={() => navigate("/")}
-                    className="te-display rounded-full border border-[#0B1330]/15 px-6 py-2.5 text-sm font-semibold text-[#0B1330] transition-colors hover:bg-[#0B1330]/[0.04]"
+                    className="te-display rounded-full border border-[#004741]/20 px-6 py-2.5 text-sm font-semibold text-[#004741] transition-colors hover:bg-[#004741]/[0.06]"
                   >
                     Back home
                   </button>
@@ -236,7 +236,7 @@ export default function EnquiryForm() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} noValidate className="space-y-6">
-                <div className="flex items-center justify-between border-b border-dashed border-[#0B1330]/15 pb-4">
+                <div className="flex items-center justify-between border-b border-dashed border-[#004741]/20 pb-4">
                   <div>
                     <p className="te-display text-[11px] font-semibold uppercase tracking-[0.25em] text-[#B9720C]">
                       Passenger details
@@ -372,11 +372,11 @@ export default function EnquiryForm() {
 
           {/* Perforated stub */}
           {!isSubmitted && (
-            <div className="relative flex flex-row items-center justify-between gap-4 bg-[#0B1330] px-6 py-5 sm:w-[190px] sm:flex-col sm:justify-center sm:gap-6 sm:py-9">
+            <div className="relative flex flex-row items-center justify-between gap-4 bg-[#004741] px-6 py-5 sm:w-[190px] sm:flex-col sm:justify-center sm:gap-6 sm:py-9">
               {/* perforation: dashed seam with cut-out notches */}
-              <div className="pointer-events-none absolute -left-2.5 top-1/2 hidden h-5 w-5 -translate-y-1/2 rounded-full bg-[#0B1330] sm:block" />
+              <div className="pointer-events-none absolute -left-2.5 top-1/2 hidden h-5 w-5 -translate-y-1/2 rounded-full bg-[#004741] sm:block" />
               <div className="pointer-events-none absolute left-0 top-0 hidden h-full border-l border-dashed border-white/15 sm:block" />
-              <div className="pointer-events-none absolute -top-2.5 left-1/2 h-5 w-5 -translate-x-1/2 rounded-full bg-[#0B1330] sm:hidden" />
+              <div className="pointer-events-none absolute -top-2.5 left-1/2 h-5 w-5 -translate-x-1/2 rounded-full bg-[#004741] sm:hidden" />
               <div className="pointer-events-none absolute top-0 left-0 block w-full border-t border-dashed border-white/15 sm:hidden" />
 
               <div className="flex items-center gap-2 sm:flex-col sm:gap-3 sm:text-center">
@@ -399,11 +399,11 @@ export default function EnquiryForm() {
                 onClick={handleSubmit}
                 disabled={isSubmitting}
                 aria-busy={isSubmitting}
-                className="te-display flex w-auto shrink-0 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#F5A83C] to-[#ffbf5e] px-6 py-3 text-[14px] font-semibold text-[#0B1330] transition-all duration-200 hover:shadow-[0_0_24px_rgba(245,168,60,0.4)] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 disabled:shadow-none sm:w-full"
+                className="te-display flex w-auto shrink-0 items-center justify-center gap-2 rounded-full bg-[#004741] px-6 py-3 text-[14px] font-semibold text-white transition-all duration-200 hover:bg-[#F5A83C] hover:text-[#004741] hover:shadow-[0_0_24px_rgba(245,168,60,0.4)] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 disabled:shadow-none sm:w-full"
               >
                 {isSubmitting ? (
                   <>
-                    <span className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-[#0B1330]/30 border-t-[#0B1330]" />
+                    <span className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-white/30 border-t-white" />
                     Sending
                   </>
                 ) : (

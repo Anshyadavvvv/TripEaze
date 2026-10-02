@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import logo from "../assets/logo6.png";
+import logo from "../assets/Safiri.jpeg";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -14,7 +14,7 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-4 left-1/2 z-50 w-[92%] max-w-5xl -translate-x-1/2 border border-white/10 bg-[#0B1330]/90 shadow-[0_8px_32px_rgba(11,19,48,0.35)] backdrop-blur-xl transition-[border-radius] duration-300 sm:bg-[#0B1330]/70 ${
+      className={`fixed top-4 left-1/2 z-50 w-[92%] max-w-5xl -translate-x-1/2 border border-white/10 bg-[#004741] shadow-[0_8px_32px_rgba(0,71,65,0.35)] backdrop-blur-xl transition-[border-radius] duration-300 ${
         isOpen ? "rounded-[28px]" : "rounded-full"
       }`}
       style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
@@ -29,8 +29,8 @@ export default function Navbar() {
         <NavLink to="/" className="flex items-center gap-2 shrink-0">
           <img
             src={logo}
-            alt="TripEaze"
-            className="h-14 w-16 object-contain"
+            alt="Safiri"
+            className="h-12 w-32 object-cover object-center"
           />
           {/* <span className="hidden sm:block text-[15px] font-bold tracking-tight text-white">
             Trip<span className="text-[#F5A83C]">eaze</span>
@@ -66,7 +66,7 @@ export default function Navbar() {
         {/* CTA */}
         <NavLink
           to="/packages"
-          className="hidden md:inline-flex items-center gap-1.5 rounded-full bg-white px-5 py-2 text-[14px] font-semibold text-[#0B1330] transition-colors duration-300 hover:bg-[#F5A83C]"
+          className="hidden md:inline-flex items-center gap-1.5 rounded-full bg-white px-5 py-2 text-[14px] font-semibold text-[#004741] transition-colors duration-300 hover:bg-[#F5A83C]"
         >
           Explore Packages
           <span aria-hidden>→</span>
@@ -123,7 +123,7 @@ export default function Navbar() {
           <NavLink
             to="/packages"
             onClick={() => setIsOpen(false)}
-            className="mt-1 rounded-full bg-white px-5 py-2 text-center text-[14px] font-semibold text-[#0B1330] transition-colors hover:bg-[#F5A83C]"
+            className="mt-1 rounded-full bg-white px-5 py-2 text-center text-[14px] font-semibold text-[#004741] transition-colors hover:bg-[#F5A83C]"
           >
             Explore Packages
           </NavLink>

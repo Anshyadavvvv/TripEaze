@@ -102,15 +102,6 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Scroll cue */}
-          <a
-            href="#packages"
-            aria-label="Scroll to packages"
-            className="te-rise absolute bottom-6 right-6 z-10 hidden h-11 w-11 items-center justify-center rounded-full border border-white/25 text-white/80 transition-colors hover:border-white hover:text-white sm:flex"
-            style={{ animationDelay: "600ms" }}
-          >
-            ↓
-          </a>
         </div>
       </div>
     </section>

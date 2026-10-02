@@ -15,7 +15,7 @@ const destinations = [
 export default function MovingText() {
   return (
     <section
-      className="relative overflow-hidden bg-[#0B1330] py-7 sm:py-8"
+      className="relative overflow-hidden bg-[#004741] py-7 sm:py-8"
       style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
     >
       <link
@@ -60,11 +60,11 @@ export default function MovingText() {
       {/* Edge fade */}
       <div
         className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 sm:w-32"
-        style={{ background: "linear-gradient(to right, #0B1330, transparent)" }}
+        style={{ background: "linear-gradient(to right, #004741, transparent)" }}
       />
       <div
         className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 sm:w-32"
-        style={{ background: "linear-gradient(to left, #0B1330, transparent)" }}
+        style={{ background: "linear-gradient(to left, #004741, transparent)" }}
       />
 
       {/* Static list for screen readers */}
