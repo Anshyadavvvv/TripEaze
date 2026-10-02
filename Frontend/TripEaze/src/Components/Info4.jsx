@@ -155,7 +155,7 @@ const css = `
   --orange-deep: #d97f10;
   --yellow: #f8c94b;
   padding: 20px 16px;
-  background: #fff;
+  background: #f3f5f4;
   font-family: "Google Sans Flex", "Google Sans", "Product Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-weight: 300;
 }
