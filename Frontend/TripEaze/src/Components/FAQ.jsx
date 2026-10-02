@@ -10,7 +10,7 @@ export default function FAQ() {
 
   return (
     <section
-      className="bg-[#F6F6FA] py-24"
+      className="bg-[#FAF6EA] py-24"
       style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
     >
       <link
