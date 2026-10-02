@@ -14,7 +14,7 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-4 left-1/2 z-50 w-[92%] max-w-5xl -translate-x-1/2 border border-white/10 bg-[#004741] shadow-[0_8px_32px_rgba(0,71,65,0.35)] backdrop-blur-xl transition-[border-radius] duration-300 ${
+      className={`fixed left-1/2 top-2 z-50 w-[calc(100%-1rem)] max-w-5xl -translate-x-1/2 border border-white/10 bg-[#004741] shadow-[0_8px_32px_rgba(0,71,65,0.35)] backdrop-blur-xl transition-[border-radius] duration-300 sm:top-4 sm:w-[92%] ${
         isOpen ? "rounded-[28px]" : "rounded-full"
       }`}
       style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
@@ -24,13 +24,13 @@ export default function Navbar() {
         href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&display=swap"
       />
 
-      <nav className="flex items-center justify-between px-4 py-2 sm:px-6">
+      <nav className="flex min-h-14 items-center justify-between px-3 py-1.5 sm:px-6 sm:py-2">
         {/* Logo */}
         <NavLink to="/" className="flex items-center gap-2 shrink-0">
           <img
             src={logo}
             alt="Safiri"
-            className="h-12 w-32 object-cover object-center"
+            className="h-10 w-24 object-cover object-center sm:h-12 sm:w-32"
           />
           {/* <span className="hidden sm:block text-[15px] font-bold tracking-tight text-white">
             Trip<span className="text-[#F5A83C]">eaze</span>
@@ -75,8 +75,10 @@ export default function Navbar() {
         {/* Mobile toggle */}
         <button
           onClick={() => setIsOpen((v) => !v)}
+          type="button"
           aria-label="Toggle menu"
           aria-expanded={isOpen}
+          aria-controls="mobile-navigation"
           className="md:hidden flex h-8 w-8 flex-col items-center justify-center gap-[5px]"
         >
           <span
@@ -99,8 +101,10 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       <div
-        className={`md:hidden overflow-hidden rounded-b-[28px] transition-[max-height] duration-300 ease-in-out ${
-          isOpen ? "max-h-60" : "max-h-0"
+        id="mobile-navigation"
+        aria-hidden={!isOpen}
+        className={`overflow-hidden rounded-b-[28px] transition-[max-height,opacity] duration-300 ease-in-out md:hidden ${
+          isOpen ? "max-h-[24rem] opacity-100" : "pointer-events-none max-h-0 opacity-0"
         }`}
       >
         <div className="flex flex-col gap-1 px-5 pb-4 pt-1">

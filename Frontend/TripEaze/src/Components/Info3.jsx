@@ -342,7 +342,7 @@ export default function Info3() {
         }
       `}</style>
 
-      <div className="mx-auto max-w-[1240px] px-5 sm:px-8">
+      <div className="mx-auto max-w-[1240px] px-4 sm:px-8">
         {/* ---------- Header ---------- */}
         <header className="max-w-4xl">
           <p className="flex items-center gap-3 text-[12px] font-bold uppercase tracking-[0.2em] text-[#C25000]">
@@ -350,7 +350,7 @@ export default function Info3() {
             EVERY SAFIRI TRIP
           </p>
           <h2
-            className="mt-5 text-[42px] font-extrabold leading-[0.98] tracking-[-0.03em] text-[#004741] sm:text-[64px] lg:text-[80px]"
+            className="mt-5 text-[clamp(2.25rem,10vw,2.625rem)] font-extrabold leading-[0.98] tracking-[-0.03em] text-[#004741] sm:text-[64px] lg:text-[80px]"
             style={{ fontFamily: FONT_DISPLAY }}
           >
             {"Not just bookings — a trip that's fully sorted"}
@@ -359,10 +359,10 @@ export default function Info3() {
         </header>
 
         {/* ---------- Bento ---------- */}
-        <div className="mt-14 grid grid-cols-1 gap-5 sm:mt-20 sm:grid-cols-2 lg:grid-cols-12">
+        <div className="mt-10 grid grid-cols-1 gap-4 sm:mt-20 sm:grid-cols-2 sm:gap-5 lg:grid-cols-12">
           {/* HERO — destination + itinerary */}
           <article className="group relative sm:col-span-2 lg:col-span-7 lg:row-span-2">
-            <div className="relative h-full min-h-[540px] overflow-hidden rounded-[24px] bg-[#004741] shadow-[0_1px_2px_rgba(0,71,65,0.06),0_30px_70px_-34px_rgba(0,71,65,0.5)] lg:min-h-[620px]">
+            <div className="relative h-full min-h-[460px] overflow-hidden rounded-[20px] bg-[#004741] shadow-[0_1px_2px_rgba(0,71,65,0.06),0_30px_70px_-34px_rgba(0,71,65,0.5)] sm:min-h-[540px] sm:rounded-[24px] lg:min-h-[620px]">
               <div className="absolute inset-0 transition-transform duration-[1600ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04] motion-reduce:transition-none motion-reduce:group-hover:scale-100">
                 {PHOTOS.hero ? (
                   // eslint-disable-next-line @next/next/no-img-element
@@ -403,11 +403,11 @@ export default function Info3() {
                 <Icon name="pin" size={14} className="text-[#FF6400]" />
                 <span>Himachal Pradesh</span>
                 <span aria-hidden="true" className="h-3 w-px bg-white/30" />
-                <span className="tabular-nums text-[#F4E7C7]/75">32.24° N, 77.19° E</span>
+                <span className="hidden tabular-nums text-[#F4E7C7]/75 sm:inline">32.24° N, 77.19° E</span>
               </div>
 
               {/* itinerary glass panel */}
-              <div className="absolute inset-x-4 bottom-4 rounded-[18px] border border-white/20 bg-white/[0.12] p-5 backdrop-blur-md sm:inset-x-6 sm:bottom-6 sm:p-6">
+              <div className="absolute inset-x-3 bottom-3 rounded-[16px] border border-white/20 bg-white/[0.12] p-4 backdrop-blur-md sm:inset-x-6 sm:bottom-6 sm:rounded-[18px] sm:p-6">
                 <div className="flex items-center gap-2.5">
                   <Icon name="route" className="text-[#FF6400]" />
                   <h3 className="text-[19px] font-bold text-[#F4E7C7]">{COPY.itinerary.title}</h3>
@@ -458,14 +458,14 @@ export default function Info3() {
                 Kasol, Himachal
               </div>
             </div>
-            <div className="px-3 pb-3 pt-5">
+            <div className="px-3 pb-3 pt-4 sm:pt-5">
               <Head icon="stay" title={COPY.stays.title} text={COPY.stays.text} />
             </div>
           </article>
 
           {/* EXPERIENCES — navy, with mini map */}
           <article
-            className={`${CARD} flex flex-col justify-end overflow-hidden bg-[#004741] p-6 text-[#F4E7C7] sm:col-span-1 lg:col-span-5 lg:min-h-[300px]`}
+            className={`${CARD} flex min-h-[260px] flex-col justify-end overflow-hidden bg-[#004741] p-5 text-[#F4E7C7] sm:col-span-1 sm:p-6 lg:col-span-5 lg:min-h-[300px]`}
           >
             <svg
               className="absolute inset-0 h-full w-full"
@@ -532,7 +532,7 @@ export default function Info3() {
 
           {/* SUPPORT */}
           <article
-            className={`${CARD} flex flex-col justify-between bg-[#F4E7C7] p-6 sm:col-span-1 lg:col-span-3 lg:min-h-[320px]`}
+            className={`${CARD} flex flex-col justify-between bg-[#F4E7C7] p-5 sm:col-span-1 sm:p-6 lg:col-span-3 lg:min-h-[320px]`}
           >
             <div className="relative pt-11">
               <span className="absolute left-1/2 top-0 flex -translate-x-1/2 items-center gap-2 whitespace-nowrap rounded-full bg-white px-3.5 py-1.5 text-[11px] font-semibold text-[#004741] shadow-[0_10px_24px_-12px_rgba(0,71,65,0.35)] transition-transform duration-500 ease-out group-hover:-translate-y-1 motion-reduce:transition-none">
@@ -561,7 +561,7 @@ export default function Info3() {
 
           {/* PRICING */}
           <article
-            className={`${CARD} flex flex-col justify-between bg-white p-6 sm:col-span-1 lg:col-span-4 lg:min-h-[320px]`}
+            className={`${CARD} flex flex-col justify-between bg-white p-5 sm:col-span-1 sm:p-6 lg:col-span-4 lg:min-h-[320px]`}
           >
             <Head icon="rupee" title={COPY.pricing.title} text={COPY.pricing.text} />
             <div className="mt-6 rounded-[14px] bg-[#FAF6EA] p-4">
