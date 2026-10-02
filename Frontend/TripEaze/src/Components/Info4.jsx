@@ -91,7 +91,7 @@ const Info4 = () => {
 
       <div className="info4__card">
         <header className="info4__head">
-          <h2 id="info4-title" className="info4__title">
+          <h2 id="info4-title" className="info4__title font-bold ">
             Pick a place. <span>We'll plan the rest.</span>
           </h2>
           <p className="info4__sub">
