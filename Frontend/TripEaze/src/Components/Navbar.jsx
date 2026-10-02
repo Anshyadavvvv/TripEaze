@@ -32,7 +32,7 @@ export default function Navbar() {
 
   return (
     <header
-      className="fixed left-1/2 top-2 z-50 w-[calc(100%-1rem)] max-w-5xl -translate-x-1/2 rounded-full border border-white/10 bg-[#004741] shadow-[0_8px_32px_rgba(0,71,65,0.35)] backdrop-blur-xl sm:top-4 sm:w-[92%]"
+      className="fixed left-1/2 top-2 z-50 box-border w-[calc(100vw_-_1rem)] max-w-5xl -translate-x-1/2 rounded-full border border-white/10 bg-[#004741] shadow-[0_8px_32px_rgba(0,71,65,0.35)] backdrop-blur-xl sm:top-4 sm:w-[92%]"
       style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
     >
       <link
@@ -40,7 +40,7 @@ export default function Navbar() {
         href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&display=swap"
       />
 
-      <nav className="flex min-h-14 items-center justify-between px-3 py-1.5 sm:px-6 sm:py-2">
+      <nav className="flex min-w-0 min-h-14 items-center justify-between px-3 py-1.5 sm:px-6 sm:py-2">
         {/* Logo */}
         <NavLink to="/" className="flex items-center gap-2 shrink-0">
           <img
@@ -95,7 +95,7 @@ export default function Navbar() {
           aria-label={isOpen ? "Close menu" : "Open menu"}
           aria-expanded={isOpen}
           aria-controls="mobile-navigation"
-          className="md:hidden flex h-8 w-8 flex-col items-center justify-center gap-[5px]"
+          className="md:hidden flex h-8 w-8 shrink-0 flex-col items-center justify-center gap-[5px]"
         >
           <span
             className={`h-[2px] w-5 bg-white transition-transform duration-300 ${
@@ -119,7 +119,7 @@ export default function Navbar() {
       {isOpen && (
         <div
           id="mobile-navigation"
-          className="absolute left-0 right-0 top-full mt-2 rounded-2xl border border-white/10 bg-[#004741] p-2 shadow-[0_8px_32px_rgba(0,71,65,0.35)] md:hidden"
+          className="absolute left-0 right-0 top-full box-border w-full max-w-full overflow-hidden rounded-2xl border border-white/10 bg-[#004741] p-2 shadow-[0_8px_32px_rgba(0,71,65,0.35)] md:hidden"
         >
           <div className="flex max-h-[calc(100dvh-5rem)] flex-col gap-1 overflow-y-auto p-2">
             {navLinks.map((link) => (
