@@ -18,16 +18,21 @@ export default function Navbar() {
     const closeOnEscape = (event) => {
       if (event.key === "Escape") setIsOpen(false);
     };
+    const closeOnDesktop = () => {
+      if (window.innerWidth >= 768) setIsOpen(false);
+    };
 
     document.addEventListener("keydown", closeOnEscape);
-    return () => document.removeEventListener("keydown", closeOnEscape);
+    window.addEventListener("resize", closeOnDesktop);
+    return () => {
+      document.removeEventListener("keydown", closeOnEscape);
+      window.removeEventListener("resize", closeOnDesktop);
+    };
   }, [isOpen]);
 
   return (
     <header
-      className={`fixed left-1/2 top-2 z-50 w-[calc(100%-1rem)] max-w-5xl -translate-x-1/2 border border-white/10 bg-[#004741] shadow-[0_8px_32px_rgba(0,71,65,0.35)] backdrop-blur-xl transition-[border-radius] duration-300 sm:top-4 sm:w-[92%] ${
-        isOpen ? "rounded-[28px]" : "rounded-full"
-      }`}
+      className="fixed left-1/2 top-2 z-50 w-[calc(100%-1rem)] max-w-5xl -translate-x-1/2 rounded-full border border-white/10 bg-[#004741] shadow-[0_8px_32px_rgba(0,71,65,0.35)] backdrop-blur-xl sm:top-4 sm:w-[92%]"
       style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
     >
       <link
@@ -111,15 +116,12 @@ export default function Navbar() {
       </nav>
 
       {/* Mobile menu */}
-      <div
-        id="mobile-navigation"
-        aria-hidden={!isOpen}
-        className={`grid overflow-hidden rounded-b-[28px] transition-[grid-template-rows,opacity] duration-300 ease-in-out md:hidden ${
-          isOpen ? "grid-rows-[1fr] opacity-100" : "pointer-events-none grid-rows-[0fr] opacity-0"
-        }`}
-      >
-        <div className="min-h-0 overflow-hidden">
-          <div className="flex max-h-[calc(100dvh-5rem)] flex-col gap-1 overflow-y-auto px-4 pb-4 pt-2 sm:px-5">
+      {isOpen && (
+        <div
+          id="mobile-navigation"
+          className="absolute left-0 right-0 top-full mt-2 rounded-2xl border border-white/10 bg-[#004741] p-2 shadow-[0_8px_32px_rgba(0,71,65,0.35)] md:hidden"
+        >
+          <div className="flex max-h-[calc(100dvh-5rem)] flex-col gap-1 overflow-y-auto p-2">
             {navLinks.map((link) => (
               <NavLink
                 key={link.label}
@@ -145,7 +147,7 @@ export default function Navbar() {
             </NavLink>
           </div>
         </div>
-      </div>
+      )}
     </header>
   );
 }
