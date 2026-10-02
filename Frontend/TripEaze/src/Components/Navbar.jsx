@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../assets/Safiri.jpeg";
 
@@ -11,6 +11,17 @@ const navLinks = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    if (!isOpen) return undefined;
+
+    const closeOnEscape = (event) => {
+      if (event.key === "Escape") setIsOpen(false);
+    };
+
+    document.addEventListener("keydown", closeOnEscape);
+    return () => document.removeEventListener("keydown", closeOnEscape);
+  }, [isOpen]);
 
   return (
     <header
@@ -76,7 +87,7 @@ export default function Navbar() {
         <button
           onClick={() => setIsOpen((v) => !v)}
           type="button"
-          aria-label="Toggle menu"
+          aria-label={isOpen ? "Close menu" : "Open menu"}
           aria-expanded={isOpen}
           aria-controls="mobile-navigation"
           className="md:hidden flex h-8 w-8 flex-col items-center justify-center gap-[5px]"
@@ -103,34 +114,36 @@ export default function Navbar() {
       <div
         id="mobile-navigation"
         aria-hidden={!isOpen}
-        className={`overflow-hidden rounded-b-[28px] transition-[max-height,opacity] duration-300 ease-in-out md:hidden ${
-          isOpen ? "max-h-[24rem] opacity-100" : "pointer-events-none max-h-0 opacity-0"
+        className={`grid overflow-hidden rounded-b-[28px] transition-[grid-template-rows,opacity] duration-300 ease-in-out md:hidden ${
+          isOpen ? "grid-rows-[1fr] opacity-100" : "pointer-events-none grid-rows-[0fr] opacity-0"
         }`}
       >
-        <div className="flex flex-col gap-1 px-5 pb-4 pt-1">
-          {navLinks.map((link) => (
+        <div className="min-h-0 overflow-hidden">
+          <div className="flex max-h-[calc(100dvh-5rem)] flex-col gap-1 overflow-y-auto px-4 pb-4 pt-2 sm:px-5">
+            {navLinks.map((link) => (
+              <NavLink
+                key={link.label}
+                to={link.href}
+                onClick={() => setIsOpen(false)}
+                className={({ isActive }) =>
+                  `rounded-lg px-3 py-2.5 text-[14px] font-medium transition-colors ${
+                    isActive
+                      ? "bg-white/15 text-white"
+                      : "text-white/80 hover:bg-white/10 hover:text-white"
+                  }`
+                }
+              >
+                {link.label}
+              </NavLink>
+            ))}
             <NavLink
-              key={link.label}
-              to={link.href}
+              to="/packages"
               onClick={() => setIsOpen(false)}
-              className={({ isActive }) =>
-                `rounded-lg px-3 py-2 text-[14px] font-medium transition-colors ${
-                  isActive
-                    ? "bg-white/15 text-white"
-                    : "text-white/80 hover:bg-white/10 hover:text-white"
-                }`
-              }
+              className="mt-1 rounded-full bg-white px-5 py-2.5 text-center text-[14px] font-semibold text-[#004741] transition-colors hover:bg-[#F5A83C]"
             >
-              {link.label}
+              Explore Packages
             </NavLink>
-          ))}
-          <NavLink
-            to="/packages"
-            onClick={() => setIsOpen(false)}
-            className="mt-1 rounded-full bg-white px-5 py-2 text-center text-[14px] font-semibold text-[#004741] transition-colors hover:bg-[#F5A83C]"
-          >
-            Explore Packages
-          </NavLink>
+          </div>
         </div>
       </div>
     </header>
