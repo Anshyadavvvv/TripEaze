@@ -1,7 +1,10 @@
 import Navbar from "../Components/Navbar";
 import Bir2 from "../assets/Bir2.png";
 import { NavLink } from "react-router-dom";
+import Modal from "../Components/Modal";
+import { useState } from "react";
 export default function Bir() {
+  const [showModal, setShowModal] = useState(false);
   return (
     <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
       <link
@@ -104,7 +107,7 @@ export default function Bir() {
                     strokeWidth="1.8"
                   />
                 </svg>
-                tripeaze.in
+                safiri.in
               </div>
             </div>
 
@@ -415,19 +418,32 @@ export default function Bir() {
                   title="Enquire on WhatsApp"
                   className="flex flex-1 items-center justify-center gap-1.5 rounded-full border border-[#0B1330]/10 bg-white px-3 py-3 text-[13px] font-semibold text-[#0B1330] transition-all duration-300 hover:border-[#22C55E]/40 hover:bg-[#22C55E]/5"
                 >
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="#22C55E" className="shrink-0">
+                  <svg
+                    width="15"
+                    height="15"
+                    viewBox="0 0 24 24"
+                    fill="#22C55E"
+                    className="shrink-0"
+                  >
                     <path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.6.8-.8 1-.1.2-.3.2-.5.1-.2-.1-1-.4-2-1.2-.7-.6-1.2-1.4-1.4-1.6-.1-.2 0-.4.1-.5l.4-.5c.1-.2.2-.3.2-.4.1-.2 0-.4 0-.5s-.6-1.4-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.2-.9.9-.9 2.2s1 2.6 1.1 2.8c.1.2 2 3 4.7 4.2.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z" />
                   </svg>
                   WhatsApp
                 </a>
 
                 <a
-                  href="/itineraries/bir-billing-itinerary.pdf"
-                  download="Bir-Billing-Itinerary.pdf"
-                  title="Download the full itinerary PDF"
+                  onClick={() => setShowModal(true)}
+                  //href="/itineraries/bir-billing-itinerary.pdf"
+                  // download="Bir-Billing-Itinerary.pdf"
+                 // title="Download the full itinerary PDF"
                   className="flex flex-1 items-center justify-center gap-1.5 rounded-full border border-[#0B1330]/10 bg-white px-3 py-3 text-[13px] font-semibold text-[#0B1330] transition-all duration-300 hover:border-[#3FA8DE]/40 hover:bg-[#3FA8DE]/5"
                 >
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" className="shrink-0">
+                  <svg
+                    width="15"
+                    height="15"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    className="shrink-0"
+                  >
                     <path
                       d="M12 3v11m0 0 3.5-3.5M12 14l-3.5-3.5M5 17v2a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-2"
                       stroke="#3FA8DE"
@@ -438,6 +454,10 @@ export default function Bir() {
                   </svg>
                   Get Itinerary
                 </a>
+                <Modal
+                  isOpen={showModal}
+                  onClose={() => setShowModal(false)}
+                />
               </div>
 
               <p className="mt-4 text-center text-[12px] text-[#0B1330]/40">
@@ -458,7 +478,10 @@ function SectionHeading({ accent, title, compact }) {
     <div className="flex items-center gap-3">
       <span
         className="h-8 w-1.5 rounded-full"
-        style={{ backgroundColor: accent, boxShadow: `0 0 12px -2px ${accent}80` }}
+        style={{
+          backgroundColor: accent,
+          boxShadow: `0 0 12px -2px ${accent}80`,
+        }}
       />
       <h2
         className={`font-bold tracking-tight text-[#0B1330] ${compact ? "text-[19px]" : "text-[24px] sm:text-[28px]"}`}

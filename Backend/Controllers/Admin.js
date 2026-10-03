@@ -1,5 +1,6 @@
 import express from "express";
 import User from "../Models/UserSchema.js";
+import User2 from "../Models/UserSchema2.js";
 import jwt from 'jsonwebtoken';
 const adminpanel = async (req, res) => {
   try {
@@ -48,6 +49,16 @@ const getEnquiry = async (req, res) => {
   }
 };
 
+const getPhoneDownloads = async (req, res) => {
+  try {
+    const phoneDownloads = await User2.find().sort({ createdAt: -1 }).lean();
+    return res.status(200).json({ phoneDownloads });
+  } catch (error) {
+    console.error("Failed to fetch phone downloads:", error);
+    return res.status(500).json({ error: "Unable to fetch phone downloads" });
+  }
+};
+
 const deleteEnquiry = async (req, res) => {
   try {
     const { id } = req.params;
@@ -62,4 +73,4 @@ const deleteEnquiry = async (req, res) => {
   }
 };
 
-export { adminpanel, getEnquiry, deleteEnquiry };
+export { adminpanel, getEnquiry, getPhoneDownloads, deleteEnquiry };

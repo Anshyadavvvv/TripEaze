@@ -104,7 +104,7 @@ export default function Shangarh() {
                     strokeWidth="1.8"
                   />
                 </svg>
-                tripeaze.in
+                safiri.in
               </div>
             </div>
 

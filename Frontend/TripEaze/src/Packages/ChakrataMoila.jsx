@@ -105,7 +105,7 @@ export default function ChakrataMoila() {
                     strokeWidth="1.8"
                   />
                 </svg>
-                tripeaze.in
+                safiri.in
               </div>
             </div>
 

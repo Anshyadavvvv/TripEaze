@@ -105,7 +105,7 @@ export default function Kasol() {
                     strokeWidth="1.8"
                   />
                 </svg>
-                tripeaze.in
+                safiri.in
               </div>
             </div>
 

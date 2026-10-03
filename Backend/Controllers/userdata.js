@@ -1,6 +1,7 @@
 import express from "express";
 import User from "../Models/UserSchema.js";
 import bcrypt from "bcrypt";
+import User2 from "../Models/UserSchema2.js";
 
 const submitEnquiry = async (req, res) => {
   try {
@@ -40,11 +41,11 @@ const submitEnquiry = async (req, res) => {
       });
     }
     const salt = await bcrypt.genSalt(10);
-    const hashedpassword = await bcrypt.hash(password , salt);
+    const hashedpassword = await bcrypt.hash(password, salt);
     const user = await User.create({
       name,
       email,
-      password:hashedpassword,
+      password: hashedpassword,
       packages: packageName,
       address,
       numoftraveller,
@@ -52,7 +53,11 @@ const submitEnquiry = async (req, res) => {
       query,
     });
 
-    return res.json({ success: true, message: "User Saved Successfully" , data: user });
+    return res.json({
+      success: true,
+      message: "User Saved Successfully",
+      data: user,
+    });
   } catch (error) {
     console.error("submitEnquiry error:", error);
     return res
@@ -60,4 +65,29 @@ const submitEnquiry = async (req, res) => {
       .json({ success: false, message: "Internal server error" });
   }
 };
-export default submitEnquiry;
+
+const submitnumber = async (req, res) => {
+  try {
+    const { phone } = req.body || {};
+    if (!phone || !/^[6-9]\d{9}$/.test(phone)) {
+      return res.status(400).json({
+        success: false,
+        message: "Please enter a valid 10-digit phone number",
+      });
+    }
+    const phonenum = await User2.create({ phone });
+    return res.status(201).json({
+      success: true,
+      message: "User's number Saved Successfully",
+      data: phonenum,
+    });
+
+  } catch (error) {
+    console.error("submitnumber error:", error);
+    return res
+      .status(500)
+      .json({ success: false, message: "Internal server error" });
+  }
+};
+
+export default {submitEnquiry,submitnumber};

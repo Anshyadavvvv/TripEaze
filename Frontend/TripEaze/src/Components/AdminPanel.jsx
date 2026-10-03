@@ -190,6 +190,7 @@ export default function AdminPanel() {
   const navigate = useNavigate();
   const [verified, setVerified] = useState(false);
   const [enquiries, setEnquiries] = useState([]);
+  const [phoneDownloads, setPhoneDownloads] = useState([]);
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("All");
   const [packageFilter, setPackageFilter] = useState("All");
@@ -223,6 +224,10 @@ export default function AdminPanel() {
         }));
 
         setEnquiries(data);
+        const phoneResponse = await axios.get(`${API_URL}/utkarshadmin/phone-downloads`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setPhoneDownloads(phoneResponse.data.phoneDownloads || []);
       } catch (error) {
         console.log("Error fetching enquiries:", error);
       }
@@ -409,6 +414,26 @@ export default function AdminPanel() {
             icon={<IconCalendar className="h-3.5 w-3.5" />}
           />
         </div>
+
+        {/* Toolbar */}
+        <section className="te-fade-up mb-8 overflow-hidden rounded-2xl border border-[#0B1330]/[0.06] bg-white shadow-sm">
+          <div className="border-b border-[#0B1330]/[0.06] px-5 py-4">
+            <h2 className="te-display text-base font-bold text-[#0B1330]">PDF download phone numbers</h2>
+            <p className="mt-1 text-sm text-[#6B7488]">Numbers submitted before the itinerary PDF is unlocked.</p>
+          </div>
+          {phoneDownloads.length ? (
+            <div className="divide-y divide-[#0B1330]/[0.05]">
+              {phoneDownloads.map((entry) => (
+                <div key={entry._id} className="flex flex-wrap items-center justify-between gap-2 px-5 py-3 text-sm">
+                  <a className="font-semibold text-[#0B1330] hover:text-[#F5A83C]" href={`tel:+91${entry.phone}`}>+91 {entry.phone}</a>
+                  <span className="text-xs text-[#8A93A8]">{entry.createdAt ? formatDate(entry.createdAt) : "Date unavailable"}</span>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p className="px-5 py-4 text-sm text-[#8A93A8]">No PDF download numbers yet.</p>
+          )}
+        </section>
 
         {/* Toolbar */}
         <div className="te-fade-up mb-5 flex flex-col gap-3 rounded-2xl border border-[#0B1330]/[0.06] bg-white p-4 shadow-sm sm:flex-row sm:items-center">
