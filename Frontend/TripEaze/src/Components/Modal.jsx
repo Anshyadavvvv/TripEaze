@@ -170,10 +170,7 @@ export default function Modal({ isOpen, onClose, onSubmit }) {
               </h2>
               <p className="mt-2 text-[15px] leading-relaxed text-[#004741]/70">
                 Your number is saved. You can download the PDF.
-                <span className="font-semibold text-[#004741]">
-                  +91 {phone.slice(0, 5)} {phone.slice(5)}
-                </span>{" "}
-                within a day.
+                
               </p>
               <a
                 href="/documents/Bir-Billing-Itinerary.pdf"
