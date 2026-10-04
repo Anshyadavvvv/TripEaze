@@ -17,7 +17,14 @@ import axios from "axios";
  *   />
  */
 
-export default function Modal({ isOpen, onClose, onSubmit }) {
+export default function Modal({
+  isOpen,
+  onClose,
+  onSubmit,
+  packageName = "Bir",
+  downloadUrl = "/documents/Bir-Billing-Itinerary.pdf",
+  fileName = "Bir-Billing-Itinerary.pdf",
+}) {
   const [phone, setPhone] = useState("");
   const [error, setError] = useState("");
   const [done, setDone] = useState(false);
@@ -69,7 +76,10 @@ export default function Modal({ isOpen, onClose, onSubmit }) {
     setSaving(true);
     try {
       const apiUrl = import.meta.env.VITE_API_URL;
-      const response = await axios.post(`${apiUrl}/packages/phone`, { phone });
+      const response = await axios.post(`${apiUrl}/packages/phone`, {
+        phone,
+        packageName,
+      });
       if (!response.data?.success) throw new Error("Unable to save phone number");
       if (onSubmit) await onSubmit(`+91${phone}`);
       setDone(true);
@@ -169,12 +179,12 @@ export default function Modal({ isOpen, onClose, onSubmit }) {
                 Thank you<span className="text-[#FF6400]">.</span>
               </h2>
               <p className="mt-2 text-[15px] leading-relaxed text-[#004741]/70">
-                Your number is saved. You can download the PDF.
+                Your number is saved. Download the {packageName} itinerary below.
                 
               </p>
               <a
-                href="/documents/Bir-Billing-Itinerary.pdf"
-                download="Bir"
+                href={downloadUrl}
+                download={fileName}
                 onClick={onClose}
                 className="mt-7 block w-full rounded-full bg-[#004741] px-6 py-3.5 text-center text-[15px] font-semibold text-[#F4E7C7] transition-colors hover:bg-[#00332F]"
               >

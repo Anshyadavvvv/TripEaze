@@ -68,14 +68,20 @@ const submitEnquiry = async (req, res) => {
 
 const submitnumber = async (req, res) => {
   try {
-    const { phone } = req.body || {};
+    const { phone, packageName } = req.body || {};
     if (!phone || !/^[6-9]\d{9}$/.test(phone)) {
       return res.status(400).json({
         success: false,
         message: "Please enter a valid 10-digit phone number",
       });
     }
-    const phonenum = await User2.create({ phone });
+    if (!packageName || typeof packageName !== "string" || !packageName.trim()) {
+      return res.status(400).json({
+        success: false,
+        message: "Please select a valid package",
+      });
+    }
+    const phonenum = await User2.create({ phone, packageName: packageName.trim() });
     return res.status(201).json({
       success: true,
       message: "User's number Saved Successfully",

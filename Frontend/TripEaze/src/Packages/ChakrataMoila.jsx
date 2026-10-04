@@ -1,7 +1,10 @@
 import Navbar from "../Components/Navbar";
 import ChakrataMoilaTop from "../assets/ChakrataMoilaTop.png";
 import { NavLink } from "react-router-dom";
+import { useState } from "react";
+import Modal from "../Components/Modal";
 export default function ChakrataMoila() {
+  const [showModal, setShowModal] = useState(false);
   return (
     <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
       <link
@@ -410,9 +413,9 @@ export default function ChakrataMoila() {
                   WhatsApp
                 </a>
 
-                <a
-                  href="/itineraries/chakrata-moila-itinerary.pdf"
-                  download="Chakrata-Moila-Itinerary.pdf"
+                <button
+                  type="button"
+                  onClick={() => setShowModal(true)}
                   title="Download the full itinerary PDF"
                   className="flex flex-1 items-center justify-center gap-1.5 rounded-full border border-[#0B1330]/10 bg-white px-3 py-3 text-[13px] font-semibold text-[#0B1330] transition-all duration-300 hover:border-[#3FA8DE]/40 hover:bg-[#3FA8DE]/5"
                 >
@@ -426,8 +429,15 @@ export default function ChakrataMoila() {
                     />
                   </svg>
                   Get Itinerary
-                </a>
+                </button>
               </div>
+              <Modal
+                isOpen={showModal}
+                onClose={() => setShowModal(false)}
+                packageName="Chakrata – Tiger Falls"
+                downloadUrl="/itineraries/chakrata-moila-itinerary.pdf"
+                fileName="Chakrata-Moila-Itinerary.pdf"
+              />
 
               <p className="mt-4 text-center text-[12px] text-[#0B1330]/40">
                 Booking amount ₹2,000/person · Balance while boarding

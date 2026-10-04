@@ -457,6 +457,9 @@ export default function Bir() {
                 <Modal
                   isOpen={showModal}
                   onClose={() => setShowModal(false)}
+                  packageName="Bir – McLeodganj"
+                  downloadUrl="/documents/Bir-Billing-Itinerary.pdf"
+                  fileName="Bir-Billing-Itinerary.pdf"
                 />
               </div>
 

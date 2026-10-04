@@ -1,5 +1,10 @@
 import mongoose from "mongoose";
 const UserSchema2 = new mongoose.Schema({
+    packageName: {
+        type: String,
+        required: true,
+        trim: true,
+    },
     phone: {
         type: String,
         required: true,
