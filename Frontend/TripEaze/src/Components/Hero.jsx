@@ -4,7 +4,7 @@ import heroImage from "../assets/Hero2.jpg";
 export default function Hero() {
   return (
     <section
-      className="relative bg-white"
+      className="relative bg-[#FAF6EA]"
       style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
     >
       <link

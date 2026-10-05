@@ -11,7 +11,7 @@ import ShahganjShah from "../assets/ShahganjShah.png";
 export default function Package() {
   return (
     <section
-      className="bg-white py-24"
+      className="bg-[#FAF6EA] py-24"
       style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
     >
       <link
