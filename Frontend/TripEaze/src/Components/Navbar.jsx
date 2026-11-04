@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../assets/Safiri.jpeg";
-//import GooeyNav from "./GooeyNav";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -64,6 +63,25 @@ export default function Navbar() {
             className="h-10 w-24 object-cover object-center sm:h-12 sm:w-32"
           />
         </NavLink>
+
+        {/* Desktop links */}
+        <div className="hidden min-w-0 items-center gap-1 md:flex">
+          {navLinks.map((link) => (
+            <NavLink
+              key={link.label}
+              to={link.href}
+              className={({ isActive }) =>
+                `rounded-full px-3 py-3 text-[14px] font-medium transition-colors ${
+                  isActive
+                    ? "bg-white text-[#004741]"
+                    : "text-white/80 hover:bg-white/10 hover:text-white"
+                }`
+              }
+            >
+              {link.label}
+            </NavLink>
+          ))}
+        </div>
 
         {/* CTA */}
         <NavLink
