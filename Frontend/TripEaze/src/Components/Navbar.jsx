@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../assets/Safiri.jpeg";
-import GooeyNav from "./GooeyNav";
+//import GooeyNav from "./GooeyNav";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -41,13 +41,6 @@ export default function Navbar() {
   }, [isOpen]);
 
   return (
-    /*
-      Positioning fix:
-      - no more `left-1/2 -translate-x-1/2` + `w-[calc(100vw-1rem)]`. 100vw / a translated
-        box drifts to the right whenever the page is even slightly wider than the screen.
-      - `fixed inset-x-2 mx-auto max-w-5xl` pins both edges to the screen and centres
-        the bar, so it can never grow past the right edge.
-    */
     <header
       ref={headerRef}
       className="fixed inset-x-2 top-2 z-50 mx-auto box-border max-w-5xl rounded-full border border-white/10 bg-[#004741] shadow-[0_8px_32px_rgba(0,71,65,0.35)] backdrop-blur-xl sm:inset-x-[4%] sm:top-4"
@@ -71,11 +64,6 @@ export default function Navbar() {
             className="h-10 w-24 object-cover object-center sm:h-12 sm:w-32"
           />
         </NavLink>
-
-        {/* Desktop links */}
-        <div className="hidden min-w-0 items-center md:flex">
-          <GooeyNav />
-        </div>
 
         {/* CTA */}
         <NavLink
