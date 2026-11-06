@@ -6,10 +6,17 @@ import "dotenv/config";
 import userdata from "./Controllers/userdata.js";
 import router from "./Routes/admin.routes.js";
 
+
+import rateLimit from "express-rate-limit"
 const app = express();
-
 const PORT = process.env.PORT || 5000;
+const limiter = rateLimit({
+    max: 200,
+    windowMs: 60 * 60 * 1000,
+    message: "Too many request from this IP , please try again later"
+});
 
+app.use(limiter);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
