@@ -92,6 +92,13 @@ export default function Navbar() {
           <span aria-hidden>→</span>
         </NavLink>
 
+        <button
+          type="button"
+          className="hidden rounded-full border border-white/60 px-4 py-2 text-[14px] font-semibold text-white transition-colors duration-300 hover:bg-white hover:text-[#004741] md:inline-flex"
+        >
+          Login / Sign Up
+        </button>
+
         {/* Mobile toggle */}
         <button
           onClick={() => setIsOpen((v) => !v)}
@@ -149,6 +156,12 @@ export default function Navbar() {
             >
               Explore Packages
             </NavLink>
+            <button
+              type="button"
+              className="rounded-full border border-white/60 px-5 py-3 text-[14px] font-semibold text-white transition-colors hover:bg-white hover:text-[#004741]"
+            >
+              Login / Sign Up
+            </button>
           </div>
         </div>
       )}
